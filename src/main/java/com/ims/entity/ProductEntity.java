@@ -31,4 +31,6 @@ public class ProductEntity {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private boolean active;
+    @Enumerated(EnumType.STRING)
+    private ECurrency currency;
 }

@@ -46,5 +46,12 @@ public class Startup implements CommandLineRunner {
             roleRepository.save(role);
         }
 
+        Optional<RoleEntity> optRoleLe = roleRepository.findByName(ERole.ROLE_LENDER);
+        if(optRoleLe.isEmpty()){
+            RoleEntity role = new RoleEntity();
+            role.setName(ERole.ROLE_LENDER);
+            roleRepository.save(role);
+        }
+
     }
 }

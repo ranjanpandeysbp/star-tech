@@ -1,10 +1,13 @@
 package com.ims.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,9 +26,13 @@ public class UserEntity {
     private String email;
     private String phone;
     private String nationality;
-    private Integer age;
+    @JsonFormat(pattern="dd/MM/yyyy")
+    private LocalDate dob;
     private String gender;
     private String password;
+
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_to_roles",

@@ -22,6 +22,4 @@ public class BrandEntity {
 
     private boolean active;
 
-    @OneToMany(mappedBy = "brand")
-    private Set<ProductEntity> products;
 }

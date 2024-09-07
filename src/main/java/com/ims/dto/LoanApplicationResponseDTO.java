@@ -13,15 +13,15 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ProductDTO {
-    private Long productId;
-    private String productName;
-    private Integer quantity;
-    private Long merchantId;
-    private Long categoryId;
-    private Double price;
+public class LoanApplicationResponseDTO {
+
+    private Long id;
+    private UserDTO merchant;
+    private UserDTO lender;
+    private Double loanAmountRequested;
     private String currency;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    private boolean active;
+    private String status;
+    private Double riskScore;
+    private LocalDateTime createdDateTime;
+    private LocalDateTime updatedDateTime;
 }

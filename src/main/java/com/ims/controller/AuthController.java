@@ -4,7 +4,6 @@ import com.ims.CommonUtil;
 import com.ims.dto.AuthRequestDTO;
 import com.ims.dto.AuthResponseDTO;
 import com.ims.entity.*;
-import com.obify.ims.entity.*;
 import com.ims.repository.MerchantManagerRepository;
 import com.ims.repository.MerchantVendorRepository;
 import com.ims.repository.RoleRepository;
@@ -23,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -30,8 +30,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/auth")
 public class AuthController {
     private UserRepository userRepository;
-    private MerchantManagerRepository merchantManagerRepository;
-    private MerchantVendorRepository merchantVendorRepository;
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
@@ -51,8 +49,6 @@ public class AuthController {
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
-        this.merchantManagerRepository = merchantManagerRepository;
-        this.merchantVendorRepository = merchantVendorRepository;
         this.commonUtil = commonUtil;
     }
     @GetMapping("/update-role/{userId}/{role}")
@@ -107,28 +103,6 @@ public class AuthController {
         }
         String hashedPassword = passwordEncoder.encode(authRequestDTO.getPassword());
         Set<RoleEntity> roles = new HashSet<>();
-        Optional<RoleEntity> userRole = roleRepository.findByName(ERole.ROLE_MANAGER);
-        if (userRole.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("role not found");
-        }
-        roles.add(userRole.get());
-        UserEntity user = new UserEntity();
-        user.setFirstName(authRequestDTO.getFirstName());
-        user.setLastName(authRequestDTO.getLastName());
-        user.setEmail(authRequestDTO.getEmail());
-        user.setPassword(hashedPassword);
-        user.setRoles(roles);
-        userRepository.save(user);
-        return ResponseEntity.ok("User registered success");
-    }
-
-    @PostMapping("/signup/merchant")
-    public ResponseEntity<String> signupMerchant(@RequestBody AuthRequestDTO authRequestDTO) {
-        if (userRepository.existsByEmail(authRequestDTO.getEmail())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("email is already taken");
-        }
-        String hashedPassword = passwordEncoder.encode(authRequestDTO.getPassword());
-        Set<RoleEntity> roles = new HashSet<>();
         Optional<RoleEntity> userRole = roleRepository.findByName(ERole.ROLE_MERCHANT);
         if (userRole.isEmpty()) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("role not found");
@@ -144,14 +118,14 @@ public class AuthController {
         return ResponseEntity.ok("User registered success");
     }
 
-    @PostMapping("/signup/manager")
-    public ResponseEntity<?> signupManager(@RequestBody AuthRequestDTO authRequestDTO) {
+    @PostMapping("/signup/merchant")
+    public ResponseEntity<?> signupMerchant(@RequestBody AuthRequestDTO authRequestDTO) {
         if (userRepository.existsByEmail(authRequestDTO.getEmail())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("email is already taken");
         }
         String hashedPassword = passwordEncoder.encode(authRequestDTO.getPassword());
         Set<RoleEntity> roles = new HashSet<>();
-        Optional<RoleEntity> userRole = roleRepository.findByName(ERole.ROLE_MANAGER);
+        Optional<RoleEntity> userRole = roleRepository.findByName(ERole.ROLE_MERCHANT);
         if (userRole.isEmpty()) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("role not found");
         }
@@ -160,24 +134,27 @@ public class AuthController {
         user.setFirstName(authRequestDTO.getFirstName());
         user.setLastName(authRequestDTO.getLastName());
         user.setEmail(authRequestDTO.getEmail());
+        user.setDob(authRequestDTO.getDob());
+        user.setPhone(authRequestDTO.getPhone());
+        user.setNationality(authRequestDTO.getNationality());
+        user.setGender(authRequestDTO.getGender());
         user.setPassword(hashedPassword);
         user.setRoles(roles);
+        user.setCreatedAt(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
         user = userRepository.save(user);
-        MerchantManagerEntity mme = new MerchantManagerEntity();
-        mme.setManagerId(user.getId());
-        UserDetailsImpl userDetails = commonUtil.loggedInUser();
-        mme.setMerchantId(userDetails.getId());
-        mme = merchantManagerRepository.save(mme);
-        return new ResponseEntity<>(mme, HttpStatus.CREATED);
+        user.setPassword(null);
+        return new ResponseEntity(user, HttpStatus.CREATED);
     }
-    @PostMapping("/signup/vendor")
-    public ResponseEntity<?> signupVendor(@RequestBody AuthRequestDTO authRequestDTO) {
+
+    @PostMapping("/signup/lender")
+    public ResponseEntity<?> signupLender(@RequestBody AuthRequestDTO authRequestDTO) {
         if (userRepository.existsByEmail(authRequestDTO.getEmail())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("email is already taken");
         }
         String hashedPassword = passwordEncoder.encode(authRequestDTO.getPassword());
         Set<RoleEntity> roles = new HashSet<>();
-        Optional<RoleEntity> userRole = roleRepository.findByName(ERole.ROLE_VENDOR);
+        Optional<RoleEntity> userRole = roleRepository.findByName(ERole.ROLE_LENDER);
         if (userRole.isEmpty()) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("role not found");
         }
@@ -186,19 +163,48 @@ public class AuthController {
         user.setFirstName(authRequestDTO.getFirstName());
         user.setLastName(authRequestDTO.getLastName());
         user.setEmail(authRequestDTO.getEmail());
+        user.setDob(authRequestDTO.getDob());
+        user.setPhone(authRequestDTO.getPhone());
+        user.setNationality(authRequestDTO.getNationality());
+        user.setGender(authRequestDTO.getGender());
         user.setPassword(hashedPassword);
         user.setRoles(roles);
+        user.setCreatedAt(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
         user = userRepository.save(user);
-        MerchantVendorEntity mve = new MerchantVendorEntity();
-        mve.setVendorId(user.getId());
-        UserDetailsImpl userDetails = commonUtil.loggedInUser();
-        mve.setMerchantId(userDetails.getId());
-        mve = merchantVendorRepository.save(mve);
-        return new ResponseEntity<>(mve, HttpStatus.CREATED);
+        user.setPassword(null);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+    @PostMapping("/signup/admin")
+    public ResponseEntity<?> signupAdmin(@RequestBody AuthRequestDTO authRequestDTO) {
+        if (userRepository.existsByEmail(authRequestDTO.getEmail())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("email is already taken");
+        }
+        String hashedPassword = passwordEncoder.encode(authRequestDTO.getPassword());
+        Set<RoleEntity> roles = new HashSet<>();
+        Optional<RoleEntity> userRole = roleRepository.findByName(ERole.ROLE_ADMIN);
+        if (userRole.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("role not found");
+        }
+        roles.add(userRole.get());
+        UserEntity user = new UserEntity();
+        user.setFirstName(authRequestDTO.getFirstName());
+        user.setLastName(authRequestDTO.getLastName());
+        user.setEmail(authRequestDTO.getEmail());
+        user.setDob(authRequestDTO.getDob());
+        user.setPhone(authRequestDTO.getPhone());
+        user.setNationality(authRequestDTO.getNationality());
+        user.setGender(authRequestDTO.getGender());
+        user.setPassword(hashedPassword);
+        user.setRoles(roles);
+        user.setCreatedAt(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
+        user = userRepository.save(user);
+        user.setPassword(null);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
     @GetMapping("/current-user")
-    public UserEntity getCurrentUser(Principal principal) {
-        UserDetails userDetails =  userDetailsService.loadUserByUsername(principal.getName());
-        return (UserEntity) userDetails;
+    public UserDetailsImpl getCurrentUser(Principal principal) {
+        return commonUtil.loggedInUser();
     }
 }
