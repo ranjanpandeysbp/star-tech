@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "product_table")
 @Data
@@ -20,19 +22,13 @@ public class ProductEntity {
     private Integer quantity;
 
     @ManyToOne
-    private MerchantVendorEntity merchantVendorEntity;
-    @ManyToOne
-    private MerchantManagerEntity merchantManagerEntity;
-    @ManyToOne
-    private LocationEntity locationEntity;
+    private UserEntity merchant;
 
     @ManyToOne
     private CategoryEntity category;
 
     private double price;
-
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     private boolean active;
-
-    @ManyToOne
-    private BrandEntity brand;
 }

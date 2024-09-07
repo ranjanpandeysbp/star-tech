@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 
@@ -22,6 +23,9 @@ public class CategoryEntity {
 
     private String categoryName;
     private boolean active;
+
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "category")
     private Set<ProductEntity> products;

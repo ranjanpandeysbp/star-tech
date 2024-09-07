@@ -1,5 +1,4 @@
 package com.ims.dto;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -11,12 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ProductDTO {
-    private Long productId;
-    private String productName;
-    private Integer quantity;
-    private Long merchantId;
-    private Long categoryId;
-    private double price;
-    private boolean active;
+public class ErrorDTO {
+    private String code;
+    private String message;
 }
