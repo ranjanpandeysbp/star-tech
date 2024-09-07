@@ -1,117 +1,59 @@
 {
 	"info": {
-		"_postman_id": "e77fdffe-db9d-4d7e-b85d-eb6ef3e45fcc",
-		"name": "ems-api",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "4599996"
+		"_postman_id": "b3cd7857-2a37-423a-ad9c-94d35103964f",
+		"name": "ims-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "4599996",
+		"_collection_link": "https://hym-ims-api-team.postman.co/workspace/HYM-IMS-API-Team-Workspace~607c1c71-1dd0-438e-a77a-25b2c6e2caea/collection/4599996-b3cd7857-2a37-423a-ad9c-94d35103964f?action=share&source=collection_link&creator=4599996"
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/api/auth/signup",
+			"name": "Signup Merchant",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"janny\",\r\n    \"lastName\": \"doe\",\r\n    \"password\": \"secret\",\r\n    \"email\": \"jannydoe@g.com\"\r\n}",
+					"raw": "{\r\n    \"firstName\": \"merchant\",\r\n    \"lastName\": \"one\",\r\n    \"password\": \"secret\",\r\n    \"email\": \"merchantone@gmail.com\",\r\n    \"nationality\": \"Indian\",\r\n    \"phone\": \"9876543210\",\r\n    \"dob\": \"01/01/1970\",\r\n    \"gender\": \"Male\",\r\n    \"roles\": [\"ROLE_MERCHANT\"] \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": {
-					"raw": "http://localhost:8080/api/auth/signup",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"auth",
-						"signup"
-					]
-				}
+				"url": "http://localhost:8080/api/v1/auth/signup/merchant"
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/api/auth/signin",
+			"name": "Login",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"password\": \"secret\",\r\n    \"email\": \"jannydoe@g.com\"\r\n}",
+					"raw": "{\r\n    \"password\": \"secret\",\r\n    \"email\": \"merchantone@gmail.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": {
-					"raw": "http://localhost:8080/api/auth/signin",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"auth",
-						"signin"
-					]
-				}
+				"url": "http://localhost:8080/api/v1/auth/signin"
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/api/test/visitor",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJycEBnLmNvbSIsImlhdCI6MTY5NzkwNzYxNywiZXhwIjoxNjk3OTA3ODE3fQ.p6Cl-rvWgtxEZnvayM2a0cVslIPke-aPx4XkRaTih0g",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/test/visitor",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"test",
-						"visitor"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/api/auth/current-user",
+			"name": "Current User",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huQGdtYWlsLmNvbSIsImlhdCI6MTY5NzkwNDAyOSwiZXhwIjoxNjk3OTA0MjI5fQ.VQP6WELfvaVzzhtIAva-kiqBa64PUKdxhcPYx3odVbE",
-							"type": "string"
-						}
-					]
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3Mzg2ODEsImV4cCI6MTcyNTczODg4MX0.0p7klV9eWc03YnPCrgqqW5T7Dv7deUXWkSFYyFy88z4"
+					}
 				},
 				"method": "GET",
 				"header": [],
@@ -124,59 +66,124 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "http://localhost:8080/api/auth/update-role",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"auth",
-						"update-role"
-					]
-				}
+				"url": "http://localhost:8080/api/v1/auth/current-user"
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/api/auth/current-user",
+			"name": "Add Category",
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "",
-							"type": "string"
-						}
-					]
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3MzkwNDgsImV4cCI6MTcyNTczOTI0OH0.8X-H8RGve4pELH1CwUJRMcWSiOu0kcPLU7r6xzdanSQ"
+					}
 				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"john@gmail.com\",\r\n    \"password\": \"secret\"\r\n}",
+					"raw": "{\r\n    \"categoryName\": \"Electronics\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": {
-					"raw": "http://localhost:8080/api/auth/signin",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"auth",
-						"signin"
-					]
-				}
+				"url": "http://localhost:8080/api/v1/auth/categories"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Categories",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3MzkwNDgsImV4cCI6MTcyNTczOTI0OH0.8X-H8RGve4pELH1CwUJRMcWSiOu0kcPLU7r6xzdanSQ"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/auth/categories"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3NDAxNzgsImV4cCI6MTcyNTc0MDM3OH0.gyQpBS8-R54_B62VcaGY3IRZRgcmpIAotKyYa4Qyn_k"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productName\": \"Mobile\",\r\n    \"quantity\": 200,\r\n    \"merchantId\": 2,\r\n    \"categoryId\": 2,\r\n    \"price\": 445,\r\n    \"currency\": \"EUR\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/v1/auth/products"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Products",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3NDA0NzIsImV4cCI6MTcyNTc0MDY3Mn0.oi0Zu0YTxspt4yuNwWZ7pWPBF5uWPGIePZF7Ivb_KTI"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/auth/products"
+			},
+			"response": []
+		},
+		{
+			"name": "Merchant Apply Loan",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3NDQwODAsImV4cCI6MTcyNTc0NDI4MH0.Hxs5bH7Jy9Mp9iKGUYEw44syT5IgxUoPa4uy3T-mh7Y"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"merchantId\": 2,\r\n    \"lenderId\": 3,\r\n    \"loanAmountRequested\": 2500,\r\n    \"currency\": \"EUR\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/v1/auth/loanapplications"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Loans of 1 Lender",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmVAZ21haWwuY29tIiwiaWF0IjoxNzI1NzQ0NDc4LCJleHAiOjE3MjU3NDQ2Nzh9.byzbYAKOOduZKkwGS3N1o9-X_C-8LW_zQehaXj3YF7U"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/v1/auth/loanapplications/3"
 			},
 			"response": []
 		}
