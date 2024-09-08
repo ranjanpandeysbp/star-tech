@@ -30,4 +30,22 @@ public class ProductsController {
         List<ProductDTO> dtoList = productService.getAll();
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
     }
+    @PostMapping("/update")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
+    public ResponseEntity<ProductDTO> update(@RequestBody ProductDTO input, @RequestParam Long productId) {
+        ProductDTO productDTO = productService.update(input,productId);
+        return new ResponseEntity<>(productDTO, HttpStatus.OK);
+    }
+    @PostMapping("/delete")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
+    public ResponseEntity<ProductDTO> delete(@RequestParam Long productId) {
+        ProductDTO productDTO = productService.delete(productId);
+        return new ResponseEntity<>(productDTO, HttpStatus.OK);
+    }
+    @PostMapping("/search")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
+    public ResponseEntity<List<ProductDTO>> search(@RequestBody ProductDTO productDTO) {
+        List<ProductDTO> productDTOList = productService.search(productDTO);
+        return new ResponseEntity<>(productDTOList, HttpStatus.OK);
+    }
 }

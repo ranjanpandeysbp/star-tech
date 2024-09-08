@@ -1,5 +1,6 @@
 package com.ims.controller;
 
+import com.ims.dto.CategoryDTO;
 import com.ims.dto.LoanApplicationRequestDTO;
 import com.ims.dto.LoanApplicationResponseDTO;
 import com.ims.service.impl.LoanApplicationServiceImpl;
@@ -24,12 +25,29 @@ public class LoanApplicationController {
         String msg = loanApplicationService.applyLoan(requestDTO);
         return new ResponseEntity<String>(msg, HttpStatus.CREATED);
     }
-    @PreAuthorize("hasRole('ADMIN') or hasRole('LENDER')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('LENDER') or hasRole('MERCHANT')")
     @GetMapping("/{lenderId}")
     public ResponseEntity<List<LoanApplicationResponseDTO>> getAllLoanApplicationForLender(@PathVariable Long lenderId){
         List<LoanApplicationResponseDTO> dtos = loanApplicationService.getAllLoanApplicationForLender(lenderId);
         return new ResponseEntity<List<LoanApplicationResponseDTO>>(dtos, HttpStatus.OK);
     }
-
+    @PostMapping("/update")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
+    public ResponseEntity<LoanApplicationResponseDTO> update(@RequestBody LoanApplicationRequestDTO input, @RequestParam Long id) {
+        LoanApplicationResponseDTO loanApplicationResponseDTO = loanApplicationService.update(input,id);
+        return new ResponseEntity<>(loanApplicationResponseDTO, HttpStatus.OK);
+    }
+    @PostMapping("/delete")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
+    public ResponseEntity<LoanApplicationResponseDTO> delete(@RequestParam Long id) {
+        LoanApplicationResponseDTO loanApplicationResponseDTO = loanApplicationService.delete(id);
+        return new ResponseEntity<>(loanApplicationResponseDTO, HttpStatus.OK);
+    }
+    @PostMapping("/search")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
+    public ResponseEntity<List<LoanApplicationResponseDTO>> search(@RequestParam Long id) {
+        List<LoanApplicationResponseDTO> loanApplicationResponseDTO = loanApplicationService.search(id);
+        return new ResponseEntity<>(loanApplicationResponseDTO, HttpStatus.OK);
+    }
 
 }

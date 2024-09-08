@@ -1,6 +1,7 @@
 package com.ims.controller;
 
 import com.ims.dto.CategoryDTO;
+import com.ims.dto.ProductDTO;
 import com.ims.service.impl.CategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,5 +30,23 @@ public class CategoryController {
     public ResponseEntity<List<CategoryDTO>> getAll() {
         List<CategoryDTO> dtoList = categoryService.getAll();
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
+    }
+    @PostMapping("/update")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
+    public ResponseEntity<CategoryDTO> update(@RequestBody CategoryDTO input, @RequestParam Long categoryId) {
+        CategoryDTO categoryDTO = categoryService.update(input,categoryId);
+        return new ResponseEntity<>(categoryDTO, HttpStatus.OK);
+    }
+    @PostMapping("/delete")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
+    public ResponseEntity<CategoryDTO> delete(@RequestParam Long categoryId) {
+        CategoryDTO categoryDTO = categoryService.delete(categoryId);
+        return new ResponseEntity<>(categoryDTO, HttpStatus.OK);
+    }
+    @PostMapping("/search")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
+    public ResponseEntity<List<CategoryDTO>> search(@RequestBody CategoryDTO categoryDTO) {
+        List<CategoryDTO> CategoryDTOList = categoryService.search(categoryDTO);
+        return new ResponseEntity<>(CategoryDTOList, HttpStatus.OK);
     }
 }
