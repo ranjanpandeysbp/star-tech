@@ -20,7 +20,6 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String firstName;
     private String lastName;
     private String email;
@@ -30,7 +29,7 @@ public class UserEntity {
     private LocalDate dob;
     private String gender;
     private String password;
-
+    private String kvkNumber;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
