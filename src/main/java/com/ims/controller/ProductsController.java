@@ -45,6 +45,7 @@ public class ProductsController {
     @PostMapping("/search")
     @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
     public ResponseEntity<List<ProductDTO>> search(@RequestBody ProductDTO productDTO) {
+
         List<ProductDTO> productDTOList = productService.search(productDTO);
         return new ResponseEntity<>(productDTOList, HttpStatus.OK);
     }
