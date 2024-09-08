@@ -30,7 +30,7 @@ public class UserEntity {
     private LocalDate dob;
     private String gender;
     private String password;
-
+    private String kvkNumber;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
