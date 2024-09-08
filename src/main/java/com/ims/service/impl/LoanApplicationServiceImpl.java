@@ -98,4 +98,28 @@ public class LoanApplicationServiceImpl implements LoanApplicationService{
         }
         return dtos;
     }
+    public LoanApplicationResponseDTO updateLoanAmount(Double loanAmount, Long id) {
+        LoanApplication pe = loanApplicationRepository.findById(id)
+                .orElseThrow(() -> new BusinessException(List.of(new ErrorDTO("NOT_FOUND", "Cannot find Loan application with Id: "+id))));
+        pe.setUpdatedDateTime(LocalDateTime.now());
+        pe.setId(id);
+        pe.setLoanAmountRequested(loanAmount);
+        pe = loanApplicationRepository.save(pe);
+        LoanApplicationResponseDTO responseDTO = new LoanApplicationResponseDTO();
+        BeanUtils.copyProperties(pe, responseDTO);
+        return responseDTO;
+    }
+
+    public LoanApplicationResponseDTO updateLoanStatus(String loanStatus, Long id) {
+        LoanApplication pe = loanApplicationRepository.findById(id)
+                .orElseThrow(() -> new BusinessException(List.of(new ErrorDTO("NOT_FOUND", "Cannot find Loan application with Id: "+id))));
+        pe.setUpdatedDateTime(LocalDateTime.now());
+        pe.setId(id);
+        pe.setELoanStatus(EStatus.valueOf(loanStatus));
+        pe = loanApplicationRepository.save(pe);
+        LoanApplicationResponseDTO responseDTO = new LoanApplicationResponseDTO();
+        BeanUtils.copyProperties(pe, responseDTO);
+        responseDTO.setStatus(loanStatus);
+        return responseDTO;
+    }
 }
