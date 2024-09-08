@@ -59,7 +59,6 @@ public class LoanApplicationController {
     @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
     public ResponseEntity<LoanApplicationResponseDTO> updateLoanStatus(@RequestParam String loanStatus, @RequestParam Long id) {
         LoanApplicationResponseDTO loanApplicationResponseDTO = loanApplicationService.updateLoanStatus(loanStatus,id);
-
         return new ResponseEntity<>(loanApplicationResponseDTO, HttpStatus.OK);
     }
 
