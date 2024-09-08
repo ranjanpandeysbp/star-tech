@@ -24,7 +24,8 @@ public class LoanApplication {
     private Double riskScore;
     private Double loanAmountRequested;
     private EStatus eLoanStatus;
-    private List<String> comments;
+    @OneToMany(mappedBy = "loanApplication")
+    private List<CommentEntity> comments;
     private LocalDateTime createdDateTime;
     private LocalDateTime updatedDateTime;
     private ECurrency currency;
