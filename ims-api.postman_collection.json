@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "b3cd7857-2a37-423a-ad9c-94d35103964f",
+		"_postman_id": "29b3f415-9890-465b-a226-62a0e59170cc",
 		"name": "ims-api",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "4599996",
-		"_collection_link": "https://hym-ims-api-team.postman.co/workspace/HYM-IMS-API-Team-Workspace~607c1c71-1dd0-438e-a77a-25b2c6e2caea/collection/4599996-b3cd7857-2a37-423a-ad9c-94d35103964f?action=share&source=collection_link&creator=4599996"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21418695"
 	},
 	"item": [
 		{
@@ -21,7 +20,21 @@
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/v1/auth/signup/merchant"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/signup/merchant",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"signup",
+						"merchant"
+					]
+				}
 			},
 			"response": []
 		},
@@ -39,7 +52,20 @@
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/v1/auth/signin"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"signin"
+					]
+				}
 			},
 			"response": []
 		},
@@ -51,22 +77,39 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3Mzg2ODEsImV4cCI6MTcyNTczODg4MX0.0p7klV9eWc03YnPCrgqqW5T7Dv7deUXWkSFYyFy88z4"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3ODM1MDIsImV4cCI6MTcyNTc4MzcwMn0.bpCARQ3iOJd5jauUoPuHXYRXTYV2FiJ5wUAhTLANBWQ",
+							"type": "string"
+						}
+					]
 				},
 				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"john@gmail.com\",\r\n    \"password\": \"secret\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/v1/auth/current-user"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/current-user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"current-user"
+					]
+				}
 			},
 			"response": []
 		},
@@ -75,9 +118,13 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3MzkwNDgsImV4cCI6MTcyNTczOTI0OH0.8X-H8RGve4pELH1CwUJRMcWSiOu0kcPLU7r6xzdanSQ"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3MzkwNDgsImV4cCI6MTcyNTczOTI0OH0.8X-H8RGve4pELH1CwUJRMcWSiOu0kcPLU7r6xzdanSQ",
+							"type": "string"
+						}
+					]
 				},
 				"method": "POST",
 				"header": [],
@@ -90,7 +137,20 @@
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/v1/auth/categories"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"categories"
+					]
+				}
 			},
 			"response": []
 		},
@@ -99,13 +159,168 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3MzkwNDgsImV4cCI6MTcyNTczOTI0OH0.8X-H8RGve4pELH1CwUJRMcWSiOu0kcPLU7r6xzdanSQ"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MDcyNzIsImV4cCI6MTcyNTgwNzQ3Mn0.8zm6jc_oeqAUWm5UYbpLZqQ4D7xrsxBWmWSzCIVlFks",
+							"type": "string"
+						}
+					]
 				},
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/v1/auth/categories"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search category",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MDY4MDAsImV4cCI6MTcyNTgwNzAwMH0.P5KAg2JWPDRN0YA36HY2Ibwpl0FonQUBXXqiwDhFeus",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/categories/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"categories",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Categories",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MDcwMzYsImV4cCI6MTcyNTgwNzIzNn0.Rad9ZD4P5ZqYEuqLg8AoPB7fX4Li2QtLaYSd75Vyhzk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"categoryId\": 2,\n        \"categoryName\": \"Cosmetics1\",\n        \"active\": true\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/categories/update?categoryId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"categories",
+						"update"
+					],
+					"query": [
+						{
+							"key": "categoryId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Category",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MDcyNzIsImV4cCI6MTcyNTgwNzQ3Mn0.8zm6jc_oeqAUWm5UYbpLZqQ4D7xrsxBWmWSzCIVlFks",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/categories/delete?categoryId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"categories",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "categoryId",
+							"value": "2"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -114,9 +329,13 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3NDAxNzgsImV4cCI6MTcyNTc0MDM3OH0.gyQpBS8-R54_B62VcaGY3IRZRgcmpIAotKyYa4Qyn_k"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3NDAxNzgsImV4cCI6MTcyNTc0MDM3OH0.gyQpBS8-R54_B62VcaGY3IRZRgcmpIAotKyYa4Qyn_k",
+							"type": "string"
+						}
+					]
 				},
 				"method": "POST",
 				"header": [],
@@ -129,7 +348,20 @@
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/v1/auth/products"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"products"
+					]
+				}
 			},
 			"response": []
 		},
@@ -138,13 +370,175 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3NDA0NzIsImV4cCI6MTcyNTc0MDY3Mn0.oi0Zu0YTxspt4yuNwWZ7pWPBF5uWPGIePZF7Ivb_KTI"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3ODY5ODYsImV4cCI6MTcyNTc4NzE4Nn0.t_9Ry9Je8-jdBZeaRJkv6Dzs9ENajTD4TP1O8T1qNyQ",
+							"type": "string"
+						}
+					]
 				},
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/v1/auth/products"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3ODY1MzAsImV4cCI6MTcyNTc4NjczMH0.byZg_3FB5NhvQghVpB6z0Jd5uJBzS6AAHHvqam2qJOo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productName\": \"Mobile1\",\r\n    \"quantity\": 201,\r\n    \"merchantId\": 1,\r\n    \"categoryId\": 1,\r\n    \"price\": 447,\r\n    \"currency\": \"EUR\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/products/update?productId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"products",
+						"update"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3ODY3NzIsImV4cCI6MTcyNTc4Njk3Mn0.Prxt4pWnuYy82Ecw1qk6gg1eqLkMecFGmksvDgo3sCE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productName\": \"Mobile1\",\r\n    \"quantity\": 201,\r\n    \"merchantId\": 1,\r\n    \"categoryId\": 1,\r\n    \"price\": 447,\r\n    \"currency\": \"EUR\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/products/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"products",
+						"search"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "2",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3ODY5ODYsImV4cCI6MTcyNTc4NzE4Nn0.t_9Ry9Je8-jdBZeaRJkv6Dzs9ENajTD4TP1O8T1qNyQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/products/delete?productId=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"products",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "productId",
+							"value": "2"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -153,9 +547,13 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3NDQwODAsImV4cCI6MTcyNTc0NDI4MH0.Hxs5bH7Jy9Mp9iKGUYEw44syT5IgxUoPa4uy3T-mh7Y"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3NDQwODAsImV4cCI6MTcyNTc0NDI4MH0.Hxs5bH7Jy9Mp9iKGUYEw44syT5IgxUoPa4uy3T-mh7Y",
+							"type": "string"
+						}
+					]
 				},
 				"method": "POST",
 				"header": [],
@@ -168,7 +566,20 @@
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/v1/auth/loanapplications"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/loanapplications",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"loanapplications"
+					]
+				}
 			},
 			"response": []
 		},
@@ -177,13 +588,175 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmVAZ21haWwuY29tIiwiaWF0IjoxNzI1NzQ0NDc4LCJleHAiOjE3MjU3NDQ2Nzh9.byzbYAKOOduZKkwGS3N1o9-X_C-8LW_zQehaXj3YF7U"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTA0OTIsImV4cCI6MTcyNTgxMDY5Mn0.fTfeTBcZjBUUCol7mtPf14dWtX0MJOKgQTiJsTJaGQA",
+							"type": "string"
+						}
+					]
 				},
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:8080/api/v1/auth/loanapplications/3"
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/loanapplications/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"loanapplications",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update  Loans of 1 Lender",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTA2MjgsImV4cCI6MTcyNTgxMDgyOH0.SxIJZixeXFo_rbwFsRPqWoa3ZWH4oqqgIcwU3Mq1LKg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"loanAmountRequested\": 2600.0,\n    \"riskScore\": 8.0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/loanapplications/update?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"loanapplications",
+						"update"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search  Loans of 1 Lender",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTE2ODksImV4cCI6MTcyNTgxMTg4OX0.EbIRwHZBU6ExAU-MO7dxf3zyLP4VclL58mDMKnEoTus",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/loanapplications/search?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"loanapplications",
+						"search"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete  Loans of 1 Lender Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTE2ODksImV4cCI6MTcyNTgxMTg4OX0.EbIRwHZBU6ExAU-MO7dxf3zyLP4VclL58mDMKnEoTus",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/loanapplications/delete?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"loanapplications",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
 			},
 			"response": []
 		}

@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests().requestMatchers("/api/v1/auth/locations/**").authenticated()
                 .and()
-                .authorizeHttpRequests().requestMatchers("/api/v1/auth/products/**","/api/v1/auth/loanapplications","/api/v1/auth/loanapplications/**").authenticated()
+                .authorizeHttpRequests().requestMatchers("/api/v1/auth/products/**","/api/v1/auth/products/update","/api/v1/auth/loanapplications","/api/v1/auth/loanapplications/**").authenticated()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/api/test/**").authenticated()
                 .and()
