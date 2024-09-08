@@ -6,22 +6,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ProductDTO {
-    private Long productId;
-    private String productName;
-    private Integer quantity;
+public class LoanApplicationRequestDTO {
     private Long merchantId;
-    private Long categoryId;
-    private Double price;
+    private Long lenderId;
+    private Double loanAmountRequested;
+    private List<String> comments;
     private String currency;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    private boolean active;
 }
