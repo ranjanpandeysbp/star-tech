@@ -53,6 +53,7 @@ public class ProductServiceImpl implements ImsService<ProductDTO, ProductDTO> {
         BeanUtils.copyProperties(input, pe);
         pe.setCurrency(ECurrency.valueOf(input.getCurrency()));
         pe.setUpdatedAt(LocalDateTime.now());
+        pe.setProductId(id);
         pe = productRepository.save(pe);
         BeanUtils.copyProperties(pe, input);
         return input;

@@ -1,13 +1,20 @@
 package com.ims.service.impl;
 
 import com.ims.dto.CategoryDTO;
+import com.ims.dto.ErrorDTO;
+import com.ims.dto.ProductDTO;
 import com.ims.entity.CategoryEntity;
+import com.ims.entity.ECurrency;
+import com.ims.entity.ProductEntity;
+import com.ims.exception.BusinessException;
 import com.ims.repository.CategoryRepository;
 import com.ims.service.ImsService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,18 +35,37 @@ public class CategoryServiceImpl implements ImsService<CategoryDTO, CategoryDTO>
     }
 
     @Override
-    public CategoryDTO update(CategoryDTO input, Long id) {
-        return null;
+    public CategoryDTO update(CategoryDTO input, Long categoryId) {
+        CategoryEntity pe = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new BusinessException(List.of(new ErrorDTO("NOT_FOUND", "Cannot find Category with Id: "+categoryId))));
+        BeanUtils.copyProperties(input, pe);
+        pe.setUpdatedAt(LocalDateTime.now());
+        pe.setCategoryId(categoryId);
+        pe.setCategoryName(input.getCategoryName());
+        pe = categoryRepository.save(pe);
+        BeanUtils.copyProperties(pe, input);
+        return input;
     }
 
     @Override
     public CategoryDTO delete(Long id) {
-        return null;
+
+        CategoryEntity pe = categoryRepository.findById(id)
+                .orElseThrow(() -> new BusinessException(List.of(new ErrorDTO("NOT_FOUND", "Cannot find Category with Id: "+id))));
+        CategoryDTO categoryDTO = new CategoryDTO();
+        BeanUtils.copyProperties(pe, categoryDTO);
+        categoryRepository.deleteById(id);
+        return categoryDTO;
     }
 
     @Override
     public CategoryDTO get(Long id) {
-        return null;
+        CategoryEntity pe = categoryRepository.findById(id)
+                .orElseThrow(() -> new BusinessException(List.of(new ErrorDTO("NOT_FOUND", "Cannot find Category with Id: "+id))));
+        CategoryDTO categoryDTO = new CategoryDTO();
+        BeanUtils.copyProperties(pe, categoryDTO);
+        categoryDTO.setCategoryId(pe.getCategoryId());
+        return categoryDTO;
     }
 
     @Override
@@ -54,6 +80,20 @@ public class CategoryServiceImpl implements ImsService<CategoryDTO, CategoryDTO>
 
     @Override
     public List<CategoryDTO> search(CategoryDTO input) {
-        return List.of();
+        List<CategoryEntity> categories = null;
+        if(input.getCategoryName() != null){
+            categories = categoryRepository.findAllByCategoryNameContaining(input.getCategoryName());
+        }else {
+            categories = new ArrayList<>();
+        }
+        CategoryDTO categoryDTO =  null;
+        List<CategoryDTO> dtos = new ArrayList<>();
+        for(CategoryEntity category: categories){
+            categoryDTO = new CategoryDTO();
+            BeanUtils.copyProperties(category, categoryDTO);;
+            categoryDTO.setCategoryId(category.getCategoryId());
+            dtos.add(categoryDTO);
+        }
+        return dtos;
     }
 }

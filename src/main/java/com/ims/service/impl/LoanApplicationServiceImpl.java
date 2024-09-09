@@ -1,24 +1,27 @@
 package com.ims.service.impl;
 
+import com.ims.dto.CategoryDTO;
+import com.ims.dto.ErrorDTO;
 import com.ims.dto.LoanApplicationRequestDTO;
 import com.ims.dto.LoanApplicationResponseDTO;
-import com.ims.entity.ECurrency;
-import com.ims.entity.EStatus;
-import com.ims.entity.LoanApplication;
-import com.ims.entity.UserEntity;
+import com.ims.entity.*;
+import com.ims.exception.BusinessException;
 import com.ims.repository.LoanApplicationRepository;
 import com.ims.repository.UserRepository;
+import com.ims.service.ImsService;
 import com.ims.service.LoanApplicationService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Service
-public class LoanApplicationServiceImpl implements LoanApplicationService {
+public class LoanApplicationServiceImpl implements LoanApplicationService{
 
     @Autowired
     private LoanApplicationRepository loanApplicationRepository;
@@ -60,5 +63,63 @@ public class LoanApplicationServiceImpl implements LoanApplicationService {
             dtos.add(responseDTO);
         }
         return dtos;
+    }
+    public LoanApplicationResponseDTO update(LoanApplicationRequestDTO input, Long id) {
+        LoanApplication pe = loanApplicationRepository.findById(id)
+                .orElseThrow(() -> new BusinessException(List.of(new ErrorDTO("NOT_FOUND", "Cannot find Loan application with Id: "+id))));
+        BeanUtils.copyProperties(input, pe);
+        pe.setUpdatedDateTime(LocalDateTime.now());
+        pe.setId(id);
+        pe.setLoanAmountRequested(input.getLoanAmountRequested());
+        pe = loanApplicationRepository.save(pe);
+        LoanApplicationResponseDTO responseDTO = new LoanApplicationResponseDTO();
+            BeanUtils.copyProperties(pe, responseDTO);
+        return responseDTO;
+    }
+
+    public LoanApplicationResponseDTO delete(Long id) {
+
+        LoanApplication pe = loanApplicationRepository.findById(id)
+                .orElseThrow(() -> new BusinessException(List.of(new ErrorDTO("NOT_FOUND", "Cannot find Loan with Id: "+id))));
+        LoanApplicationResponseDTO loanApplicationResponseDTO = new LoanApplicationResponseDTO();
+        BeanUtils.copyProperties(pe, loanApplicationResponseDTO);
+        loanApplicationRepository.deleteById(id);
+        return loanApplicationResponseDTO;
+    }
+    public List<LoanApplicationResponseDTO> search(Long id) {
+        List<LoanApplication> loanApplications = loanApplicationRepository.findAllByLenderId(id);
+        LoanApplicationResponseDTO loanApplicationResponseDTO =  null;
+        List<LoanApplicationResponseDTO> dtos = new ArrayList<>();
+        for(LoanApplication loanApplication : loanApplications){
+            loanApplicationResponseDTO = new LoanApplicationResponseDTO();
+            BeanUtils.copyProperties(loanApplication, loanApplicationResponseDTO);;
+            loanApplicationResponseDTO.setId(loanApplication.getId());
+            dtos.add(loanApplicationResponseDTO);
+        }
+        return dtos;
+    }
+    public LoanApplicationResponseDTO updateLoanAmount(Double loanAmount, Long id) {
+        LoanApplication pe = loanApplicationRepository.findById(id)
+                .orElseThrow(() -> new BusinessException(List.of(new ErrorDTO("NOT_FOUND", "Cannot find Loan application with Id: "+id))));
+        pe.setUpdatedDateTime(LocalDateTime.now());
+        pe.setId(id);
+        pe.setLoanAmountRequested(loanAmount);
+        pe = loanApplicationRepository.save(pe);
+        LoanApplicationResponseDTO responseDTO = new LoanApplicationResponseDTO();
+        BeanUtils.copyProperties(pe, responseDTO);
+        return responseDTO;
+    }
+
+    public LoanApplicationResponseDTO updateLoanStatus(String loanStatus, Long id) {
+        LoanApplication pe = loanApplicationRepository.findById(id)
+                .orElseThrow(() -> new BusinessException(List.of(new ErrorDTO("NOT_FOUND", "Cannot find Loan application with Id: "+id))));
+        pe.setUpdatedDateTime(LocalDateTime.now());
+        pe.setId(id);
+        pe.setELoanStatus(EStatus.valueOf(loanStatus));
+        pe = loanApplicationRepository.save(pe);
+        LoanApplicationResponseDTO responseDTO = new LoanApplicationResponseDTO();
+        BeanUtils.copyProperties(pe, responseDTO);
+        responseDTO.setStatus(loanStatus);
+        return responseDTO;
     }
 }
