@@ -31,6 +31,12 @@ public class CategoryController {
         List<CategoryDTO> dtoList = categoryService.getAll();
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
     }
+    @GetMapping("/{merchantId}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
+    public ResponseEntity<List<CategoryDTO>> getAllById(@PathVariable Long merchantId) {
+        List<CategoryDTO> dtoList = categoryService.getAllById(merchantId);
+        return new ResponseEntity<>(dtoList, HttpStatus.OK);
+    }
     @PostMapping("/update")
     @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
     public ResponseEntity<CategoryDTO> update(@RequestBody CategoryDTO input, @RequestParam Long categoryId) {

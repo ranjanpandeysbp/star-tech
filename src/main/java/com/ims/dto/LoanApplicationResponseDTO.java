@@ -20,7 +20,8 @@ public class LoanApplicationResponseDTO {
     private UserDTO lender;
     private Double loanAmountRequested;
     private String currency;
-    private String status;
+    private String eLoanStatusLender;
+    private String eLoanStatusMerchant;
     private Double riskScore;
     private LocalDateTime createdDateTime;
     private LocalDateTime updatedDateTime;

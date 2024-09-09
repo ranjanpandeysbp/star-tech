@@ -37,7 +37,8 @@ public class LoanApplicationServiceImpl implements LoanApplicationService{
         int randomNum = random.nextInt((10 - 1) + 1) + 1;
         loanApplication.setLender(lender);
         loanApplication.setRiskScore(Double.valueOf(randomNum));
-        loanApplication.setELoanStatus(EStatus.INITIATED);
+        loanApplication.setELoanStatusLender(EStatus.INITIATED);
+        loanApplication.setELoanStatusMerchant(EStatus.INITIATED);
         UserEntity merchant = userRepository.findById(requestDTO.getMerchantId()).get();
         loanApplication.setMerchant(merchant);
         loanApplication.setCurrency(ECurrency.valueOf(requestDTO.getCurrency()));
@@ -110,16 +111,24 @@ public class LoanApplicationServiceImpl implements LoanApplicationService{
         return responseDTO;
     }
 
-    public LoanApplicationResponseDTO updateLoanStatus(String loanStatus, Long id) {
+    public LoanApplicationResponseDTO updateLoanStatus(String loanStatus, Long id, String role) {
         LoanApplication pe = loanApplicationRepository.findById(id)
                 .orElseThrow(() -> new BusinessException(List.of(new ErrorDTO("NOT_FOUND", "Cannot find Loan application with Id: "+id))));
         pe.setUpdatedDateTime(LocalDateTime.now());
         pe.setId(id);
-        pe.setELoanStatus(EStatus.valueOf(loanStatus));
+        if(role.equalsIgnoreCase("ROLE_MERCHANT")){
+            pe.setELoanStatusMerchant(EStatus.valueOf(loanStatus));
+        }else{
+            pe.setELoanStatusLender(EStatus.valueOf(loanStatus));
+        }
         pe = loanApplicationRepository.save(pe);
         LoanApplicationResponseDTO responseDTO = new LoanApplicationResponseDTO();
         BeanUtils.copyProperties(pe, responseDTO);
-        responseDTO.setStatus(loanStatus);
+        if(role.equalsIgnoreCase("ROLE_MERCHANT")){
+            responseDTO.setELoanStatusMerchant(loanStatus);
+        }else{
+            responseDTO.setELoanStatusLender(loanStatus);
+        }
         return responseDTO;
     }
 }
