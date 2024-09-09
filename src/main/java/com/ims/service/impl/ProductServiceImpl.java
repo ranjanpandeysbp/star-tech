@@ -1,11 +1,14 @@
 package com.ims.service.impl;
 
+import com.ims.CommonUtil;
+import com.ims.dto.BulkUploadDTO;
 import com.ims.dto.ErrorDTO;
 import com.ims.dto.ProductDTO;
 import com.ims.entity.*;
 import com.ims.exception.BusinessException;
 import com.ims.repository.*;
 import com.ims.service.ImsService;
+import com.ims.service.UserDetailsImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -25,6 +29,9 @@ public class ProductServiceImpl implements ImsService<ProductDTO, ProductDTO> {
     private CategoryRepository categoryRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private CommonUtil commonUtil;
+    private  UserEntity userEntity;
 
     @Override
     public ProductDTO add(ProductDTO input) {
@@ -112,4 +119,33 @@ public class ProductServiceImpl implements ImsService<ProductDTO, ProductDTO> {
         return dtos;
     }
 
+    public String bulkUpload(BulkUploadDTO inventoryDetails) {
+        UserDetailsImpl userDetails = commonUtil.loggedInUser();
+        userEntity = userRepository.findById(userDetails.getId()).get();
+        List<String> categories = inventoryDetails.getInventoryDetails().stream().skip(1)
+                .map(row ->  row.get(4).toString()).distinct()
+                .toList();
+        Map<String, CategoryEntity> categoryMap = categories.stream()
+                .map(this::saveCategories)
+                .collect(Collectors.toMap(CategoryEntity::getCategoryName, category -> category));
+
+        inventoryDetails.getInventoryDetails().stream().skip(1).forEach(row -> {
+            String productName = (String) row.get(0);
+            Integer quantity = (Integer) row.get(1);
+            Double unitPrice = Double.valueOf(row.get(2).toString());
+            String currency = (String) row.get(3);
+            String categoryName = (String) row.get(4);
+            CategoryEntity category = categoryMap.get(categoryName);
+            ProductEntity product = ProductEntity.builder().productName(productName).quantity(quantity).price(unitPrice).currency(ECurrency.valueOf(currency))
+                    .category(category).merchant(userEntity).build();
+            productRepository.save(product);
+            });
+            return "upload successful";
+    }
+    private CategoryEntity saveCategories(String category){
+        CategoryEntity categoryEntity= new CategoryEntity();
+        categoryEntity.setCategoryName(category);
+        categoryEntity.setMerchant(userEntity);
+        return categoryRepository.save(categoryEntity);
+    }
 }

@@ -1,5 +1,6 @@
 package com.ims.controller;
 
+import com.ims.dto.BulkUploadDTO;
 import com.ims.dto.ProductDTO;
 import com.ims.service.impl.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,12 @@ public class ProductsController {
     public ResponseEntity<List<ProductDTO>> search(@RequestBody ProductDTO productDTO) {
         List<ProductDTO> productDTOList = productService.search(productDTO);
         return new ResponseEntity<>(productDTOList, HttpStatus.OK);
+    }
+
+    @PostMapping("/bulk-upload")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
+    public ResponseEntity<String> bulkUpload(@RequestBody BulkUploadDTO inventoryDetails) {
+        String uploadMessage = productService.bulkUpload(inventoryDetails);
+        return new ResponseEntity<>(uploadMessage, HttpStatus.OK);
     }
 }

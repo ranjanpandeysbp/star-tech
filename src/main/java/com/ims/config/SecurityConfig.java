@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests().requestMatchers("/api/v1/auth/brands/**").authenticated()
                 .and()
-                .authorizeHttpRequests().requestMatchers("/api/v1/auth/locations/**","/api/v1/auth/loanaoffer/**").authenticated()
+                .authorizeHttpRequests().requestMatchers("/api/v1/auth/locations/**","/api/v1/auth/loanoffer/**").authenticated()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/api/v1/auth/products/**","/api/v1/auth/products/update","/api/v1/auth/loanapplications","/api/v1/auth/loanapplications/**").authenticated()
                 .and()

@@ -121,7 +121,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3MzkwNDgsImV4cCI6MTcyNTczOTI0OH0.8X-H8RGve4pELH1CwUJRMcWSiOu0kcPLU7r6xzdanSQ",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MDY4MDAsImV4cCI6MTcyNTgwNzAwMH0.P5KAg2JWPDRN0YA36HY2Ibwpl0FonQUBXXqiwDhFeus",
 							"type": "string"
 						}
 					]
@@ -130,7 +130,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"categoryName\": \"Electronics\"\r\n}",
+					"raw": "{\r\n    \"categoryName\": \"Cosmetics\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -156,6 +156,39 @@
 		},
 		{
 			"name": "Get All Categories",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU5MTgxMDUsImV4cCI6MTcyNTkzODEwNX0.ajcjTzdQUvtuuP5YFd_lkIbrN-Pv6vEl8jlDzkjifyk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/categories/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"categories",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Categories by merchant id",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -194,7 +227,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MDY4MDAsImV4cCI6MTcyNTgwNzAwMH0.P5KAg2JWPDRN0YA36HY2Ibwpl0FonQUBXXqiwDhFeus",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MDcwMzYsImV4cCI6MTcyNTgwNzIzNn0.Rad9ZD4P5ZqYEuqLg8AoPB7fX4Li2QtLaYSd75Vyhzk",
 							"type": "string"
 						}
 					]
@@ -203,7 +236,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\n        \"categoryId\": 2,\n        \"categoryName\": \"Cosmetics\",\n        \"active\": true\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -332,7 +365,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3NDAxNzgsImV4cCI6MTcyNTc0MDM3OH0.gyQpBS8-R54_B62VcaGY3IRZRgcmpIAotKyYa4Qyn_k",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3ODU5NDAsImV4cCI6MTcyNTc4NjE0MH0.d5Z3tWM0xgxW-UZ4QNUaFND2gvxHXKlLB_uUMGcMiIc",
 							"type": "string"
 						}
 					]
@@ -341,7 +374,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"productName\": \"Mobile\",\r\n    \"quantity\": 200,\r\n    \"merchantId\": 2,\r\n    \"categoryId\": 2,\r\n    \"price\": 445,\r\n    \"currency\": \"EUR\"\r\n\r\n}",
+					"raw": "{\r\n    \"productName\": \"Mobile\",\r\n    \"quantity\": 200,\r\n    \"merchantId\": 1,\r\n    \"categoryId\": 1,\r\n    \"price\": 445,\r\n    \"currency\": \"EUR\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -373,7 +406,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3ODY5ODYsImV4cCI6MTcyNTc4NzE4Nn0.t_9Ry9Je8-jdBZeaRJkv6Dzs9ENajTD4TP1O8T1qNyQ",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU5MTcyNzUsImV4cCI6MTcyNTkzNzI3NX0.Fz1S_PXdvi3U3uU8onlf7qVVEMOnBLLVzGHK6Pv_YM0",
 							"type": "string"
 						}
 					]
@@ -440,6 +473,48 @@
 							"key": "productId",
 							"value": "2"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bulk upload",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU5MTcyNzUsImV4cCI6MTcyNTkzNzI3NX0.Fz1S_PXdvi3U3uU8onlf7qVVEMOnBLLVzGHK6Pv_YM0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"inventoryDetails\":\r\n    \r\n    [\r\n        [\r\n        \"ProductName\",\r\n        \"Quantity\",\r\n        \"Unit Price\",\r\n        \"Currency\",\r\n        \"Category\"\r\n    ],\r\n    [\r\n       \"Seat covers\",\r\n        2,\r\n        5,\r\n        \"EUR\",\r\n        \"Accessories\"\r\n    ],\r\n      [\r\n       \"Bi cycle stand\",\r\n        20,\r\n        100,\r\n        \"EUR\",\r\n        \"Accessories\"\r\n    ],\r\n    [\r\n       \"E bike\",\r\n        20,\r\n        100,\r\n        \"EUR\",\r\n        \"Electronic bike\"\r\n    ]\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/products/bulk-upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"products",
+						"bulk-upload"
 					]
 				}
 			},
@@ -550,7 +625,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3NDQwODAsImV4cCI6MTcyNTc0NDI4MH0.Hxs5bH7Jy9Mp9iKGUYEw44syT5IgxUoPa4uy3T-mh7Y",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTk1NjksImV4cCI6MTcyNTgxOTc2OX0.LlXwX4o5XUhLf60zx9GDeIz5b3FjvXxbeAEpcNoB_3Y",
 							"type": "string"
 						}
 					]
@@ -559,7 +634,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"merchantId\": 2,\r\n    \"lenderId\": 3,\r\n    \"loanAmountRequested\": 2500,\r\n    \"currency\": \"EUR\"\r\n}",
+					"raw": "{\r\n    \"merchantId\": 1,\r\n    \"lenderId\": 1,\r\n    \"loanAmountRequested\": 2600,\r\n    \"currency\": \"EUR\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -591,7 +666,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTA0OTIsImV4cCI6MTcyNTgxMDY5Mn0.fTfeTBcZjBUUCol7mtPf14dWtX0MJOKgQTiJsTJaGQA",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTk1NjksImV4cCI6MTcyNTgxOTc2OX0.LlXwX4o5XUhLf60zx9GDeIz5b3FjvXxbeAEpcNoB_3Y",
 							"type": "string"
 						}
 					]
@@ -624,7 +699,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTA2MjgsImV4cCI6MTcyNTgxMDgyOH0.SxIJZixeXFo_rbwFsRPqWoa3ZWH4oqqgIcwU3Mq1LKg",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTk1NjksImV4cCI6MTcyNTgxOTc2OX0.LlXwX4o5XUhLf60zx9GDeIz5b3FjvXxbeAEpcNoB_3Y",
 							"type": "string"
 						}
 					]
@@ -641,7 +716,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/loanapplications/update?id=1",
+					"raw": "http://localhost:8080/api/v1/auth/loanapplications/update?id=52",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -657,7 +732,7 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "52"
 						}
 					]
 				}
@@ -672,7 +747,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTA2MjgsImV4cCI6MTcyNTgxMDgyOH0.SxIJZixeXFo_rbwFsRPqWoa3ZWH4oqqgIcwU3Mq1LKg",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTk5MDcsImV4cCI6MTcyNTgyMDEwN30.Lrh8qE5RCEgI8MtZrO4SPuQ_gE1ngBaHIyfkjewrJTY",
 							"type": "string"
 						}
 					]
@@ -724,7 +799,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTA2MjgsImV4cCI6MTcyNTgxMDgyOH0.SxIJZixeXFo_rbwFsRPqWoa3ZWH4oqqgIcwU3Mq1LKg",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MjA2NDgsImV4cCI6MTcyNTgyMDg0OH0.AMcPu5kSAe0376WubevaGyCdl2TeGPiKLHKh2QRekzs",
 							"type": "string"
 						}
 					]
@@ -741,7 +816,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/loanapplications/update-loan-status?loanStatus=3000&id=52",
+					"raw": "http://localhost:8080/api/v1/auth/loanapplications/update-loan-status?loanStatus=INITIATED&id=52",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -757,7 +832,7 @@
 					"query": [
 						{
 							"key": "loanStatus",
-							"value": "3000"
+							"value": "INITIATED"
 						},
 						{
 							"key": "id",
@@ -776,7 +851,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTE2ODksImV4cCI6MTcyNTgxMTg4OX0.EbIRwHZBU6ExAU-MO7dxf3zyLP4VclL58mDMKnEoTus",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTE4MzksImV4cCI6MTcyNTgxMjAzOX0.m86iSKAhZguIzRjSuscss2DxFkCjYlY8LFZRHokrojg",
 							"type": "string"
 						}
 					]
@@ -824,7 +899,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4NTUzMjcsImV4cCI6MTcyNTg1NTUyN30.cUc77oh3xVwgekRLBfWeRgl8VJdD9uHlILIJdvkg5-I",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU5MTI3MjUsImV4cCI6MTcyNTkxMjkyNX0.fTE2B3nwgEYG3MvSubpO9lSQQhP7WYirGd8HDol2aQ8",
 							"type": "string"
 						}
 					]
@@ -833,7 +908,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"minLoanAmount\": 1000.0,\n    \"maxLoanAmount\": 30000.0,\n    \"minInterestRate\": 2.0,\n    \"maxInterestRate\": 4.0,\n    \"loanCriteria\": \"should be paid in 12 months\",\n    \"lenderId\":1\n\n}",
+					"raw": "{\n    \"minLoanAmount\": 1600.0,\n    \"maxLoanAmount\": 2500.0,\n    \"minInterestRate\": 2.0,\n    \"maxInterestRate\": 4.0,\n    \"loanCriteria\": \"should be paid in 9 months\",\n    \"lenderId\":1\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -841,7 +916,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/loanaoffer",
+					"raw": "http://localhost:8080/api/v1/auth/loanoffer",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -851,13 +926,259 @@
 						"api",
 						"v1",
 						"auth",
-						"loanaoffer"
+						"loanoffer"
 					],
 					"query": [
 						{
 							"key": "id",
 							"value": "1",
 							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update  Loan offer of 1 lender",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU5MTI0MzksImV4cCI6MTcyNTkxMjYzOX0.1WKB6rWE9e9buVpFFG_zDmpjKaOeAFGjy5ecz8b-pSs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  //  \"minLoanAmount\": 800.0,\n    \"maxLoanAmount\": 4000.0\n    // \"minInterestRate\": 2.0,\n    // \"maxInterestRate\": 4.0,\n    // \"loanCriteria\": \"should be paid in 9 months\",\n    // \"lenderId\":1\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/loanoffer/update?id=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"loanoffer",
+						"update"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAll Loan offers for 1 lender",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU5MTc0OTQsImV4cCI6MTcyNTkzNzQ5NH0.aAT5eupcMnQzDbiOIWNtz78qU1Rno3bvPZCmPcnVlGk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/loanoffer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"loanoffer"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Loan offer by loan id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU5MTc0OTQsImV4cCI6MTcyNTkzNzQ5NH0.aAT5eupcMnQzDbiOIWNtz78qU1Rno3bvPZCmPcnVlGk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/loanoffer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"loanoffer"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Loan offer for 1 lender",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU5MTI3MjUsImV4cCI6MTcyNTkxMjkyNX0.fTE2B3nwgEYG3MvSubpO9lSQQhP7WYirGd8HDol2aQ8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/loanoffer/delete?id=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"loanoffer",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Loan offer for 1 lender",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU5MTM4NjgsImV4cCI6MTcyNTkzMzg2OH0.IV86Rfcs4_wmb5JabTMe4DztFWo85Q6Klp3nRIcQveg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/loanoffer/search-loan-offers?loanAmount=1500",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"loanoffer",
+						"search-loan-offers"
+					],
+					"query": [
+						{
+							"key": "loanAmount",
+							"value": "1500"
 						}
 					]
 				}
