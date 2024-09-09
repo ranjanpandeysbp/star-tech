@@ -18,5 +18,6 @@ public class LoanOfferDTO {
     private Double minInterestRate;
     private Double maxInterestRate;
     private String loanCriteria;
+    private String industry;
     private Long lenderId;
 }

@@ -6,21 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "offers")
+@Table(name = "quote")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoanOffers {
-
+public class QuoteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Double minLoanAmount;
-    private Double maxLoanAmount;
-    private Double minInterestRate;
-    private Double maxInterestRate;
     private String industry;
-    private String loanCriteria;
-    @ManyToOne
-    private UserEntity lender;
+    private String email;
+    private Double amount;
 }

@@ -37,6 +37,7 @@ public class LoanOfferServiceImpl implements ImsService<LoanOfferDTO,LoanOfferDT
         loanOffers.setMinLoanAmount(input.getMinLoanAmount());
         loanOffers.setMaxInterestRate(input.getMaxInterestRate());
         loanOffers.setMinInterestRate(input.getMinInterestRate());
+        loanOffers.setIndustry(input.getIndustry());
         UserEntity userEntity = userRepository.findById(input.getLenderId()).get();
         loanOffers.setLender(userEntity);
         loanOffers = loanOfferRepository.save(loanOffers);
