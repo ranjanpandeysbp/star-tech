@@ -78,6 +78,15 @@ public class CategoryServiceImpl implements ImsService<CategoryDTO, CategoryDTO>
         }).collect(Collectors.toList());
     }
 
+   public List<CategoryDTO> getAllById(Long merchantId) {
+        List<CategoryEntity> entityList = categoryRepository.findAllByMerchantId(merchantId);
+        return entityList.stream().map(categoryEntity -> {
+            CategoryDTO categoryDTO = new CategoryDTO();
+            BeanUtils.copyProperties(categoryEntity, categoryDTO);
+            return categoryDTO;
+        }).collect(Collectors.toList());
+    }
+
     @Override
     public List<CategoryDTO> search(CategoryDTO input) {
         List<CategoryEntity> categories = null;

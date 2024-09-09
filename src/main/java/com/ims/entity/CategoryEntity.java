@@ -23,7 +23,8 @@ public class CategoryEntity {
 
     private String categoryName;
     private boolean active;
-
+    @ManyToOne
+    private UserEntity merchant;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 

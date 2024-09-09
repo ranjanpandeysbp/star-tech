@@ -23,7 +23,8 @@ public class LoanApplication {
     private UserEntity lender;
     private Double riskScore;
     private Double loanAmountRequested;
-    private EStatus eLoanStatus;
+    private EStatus eLoanStatusLender;
+    private EStatus eLoanStatusMerchant;
     @OneToMany(mappedBy = "loanApplication")
     private List<CommentEntity> comments;
     private LocalDateTime createdDateTime;
