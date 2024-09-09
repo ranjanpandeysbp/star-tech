@@ -665,6 +665,110 @@
 			"response": []
 		},
 		{
+			"name": "Update  Loan amount of 1 Lender",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTA2MjgsImV4cCI6MTcyNTgxMDgyOH0.SxIJZixeXFo_rbwFsRPqWoa3ZWH4oqqgIcwU3Mq1LKg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/loanapplications/update-loan-amount?loanAmount=3000&id=52",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"loanapplications",
+						"update-loan-amount"
+					],
+					"query": [
+						{
+							"key": "loanAmount",
+							"value": "3000"
+						},
+						{
+							"key": "id",
+							"value": "52"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update  Loan status of 1 Lender",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTA2MjgsImV4cCI6MTcyNTgxMDgyOH0.SxIJZixeXFo_rbwFsRPqWoa3ZWH4oqqgIcwU3Mq1LKg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/loanapplications/update-loan-status?loanStatus=3000&id=52",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"loanapplications",
+						"update-loan-status"
+					],
+					"query": [
+						{
+							"key": "loanStatus",
+							"value": "3000"
+						},
+						{
+							"key": "id",
+							"value": "52"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Search  Loans of 1 Lender",
 			"request": {
 				"auth": {
@@ -713,14 +817,14 @@
 			"response": []
 		},
 		{
-			"name": "Delete  Loans of 1 Lender Copy",
+			"name": "Add  Loan offer of 1 lender",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTE2ODksImV4cCI6MTcyNTgxMTg4OX0.EbIRwHZBU6ExAU-MO7dxf3zyLP4VclL58mDMKnEoTus",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4NTUzMjcsImV4cCI6MTcyNTg1NTUyN30.cUc77oh3xVwgekRLBfWeRgl8VJdD9uHlILIJdvkg5-I",
 							"type": "string"
 						}
 					]
@@ -729,7 +833,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\n    \"minLoanAmount\": 1000.0,\n    \"maxLoanAmount\": 30000.0,\n    \"minInterestRate\": 2.0,\n    \"maxInterestRate\": 4.0,\n    \"loanCriteria\": \"should be paid in 12 months\",\n    \"lenderId\":1\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -737,7 +841,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/loanapplications/delete?id=1",
+					"raw": "http://localhost:8080/api/v1/auth/loanaoffer",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -747,13 +851,13 @@
 						"api",
 						"v1",
 						"auth",
-						"loanapplications",
-						"delete"
+						"loanaoffer"
 					],
 					"query": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "1",
+							"disabled": true
 						}
 					]
 				}
