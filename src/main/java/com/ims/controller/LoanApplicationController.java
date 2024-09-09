@@ -57,8 +57,8 @@ public class LoanApplicationController {
     }
     @PatchMapping("/update-loan-status")
     @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
-    public ResponseEntity<LoanApplicationResponseDTO> updateLoanStatus(@RequestParam String loanStatus, @RequestParam Long id) {
-        LoanApplicationResponseDTO loanApplicationResponseDTO = loanApplicationService.updateLoanStatus(loanStatus,id);
+    public ResponseEntity<LoanApplicationResponseDTO> updateLoanStatus(@RequestParam String loanStatus, @RequestParam Long id,@RequestParam String role) {
+        LoanApplicationResponseDTO loanApplicationResponseDTO = loanApplicationService.updateLoanStatus(loanStatus,id,role);
         return new ResponseEntity<>(loanApplicationResponseDTO, HttpStatus.OK);
     }
 

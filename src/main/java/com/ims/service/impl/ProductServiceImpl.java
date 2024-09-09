@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -118,16 +119,33 @@ public class ProductServiceImpl implements ImsService<ProductDTO, ProductDTO> {
         return dtos;
     }
 
-    public List<ProductDTO> bulkUpload(BulkUploadDTO inventoryDetails) {
+    public String bulkUpload(BulkUploadDTO inventoryDetails) {
         UserDetailsImpl userDetails = commonUtil.loggedInUser();
         userEntity = userRepository.findById(userDetails.getId()).get();
-        inventoryDetails.getInventoryDetails().stream().skip(1).map(inventoryDetailList->inventoryDetailList.get(4).toString()).distinct()
-                .forEach(this::saveCategories);
-        return null;
+        List<String> categories = inventoryDetails.getInventoryDetails().stream().skip(1)
+                .map(row ->  row.get(4).toString()).distinct()
+                .toList();
+        Map<String, CategoryEntity> categoryMap = categories.stream()
+                .map(this::saveCategories)
+                .collect(Collectors.toMap(CategoryEntity::getCategoryName, category -> category));
+
+        inventoryDetails.getInventoryDetails().stream().skip(1).forEach(row -> {
+            String productName = (String) row.get(0);
+            Integer quantity = (Integer) row.get(1);
+            Double unitPrice = Double.valueOf(row.get(2).toString());
+            String currency = (String) row.get(3);
+            String categoryName = (String) row.get(4);
+            CategoryEntity category = categoryMap.get(categoryName);
+            ProductEntity product = ProductEntity.builder().productName(productName).quantity(quantity).price(unitPrice).currency(ECurrency.valueOf(currency))
+                    .category(category).merchant(userEntity).build();
+            productRepository.save(product);
+            });
+            return "upload successful";
     }
-    private void saveCategories(String category){
+    private CategoryEntity saveCategories(String category){
         CategoryEntity categoryEntity= new CategoryEntity();
         categoryEntity.setCategoryName(category);
-        categoryRepository.save(categoryEntity);
+        categoryEntity.setMerchant(userEntity);
+        return categoryRepository.save(categoryEntity);
     }
 }

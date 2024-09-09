@@ -55,22 +55,4 @@ public class CategoryController {
         List<CategoryDTO> dtoList = categoryService.getAllById(merchantId);
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
     }
-    @PostMapping("/update")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
-    public ResponseEntity<CategoryDTO> update(@RequestBody CategoryDTO input, @RequestParam Long categoryId) {
-        CategoryDTO categoryDTO = categoryService.update(input,categoryId);
-        return new ResponseEntity<>(categoryDTO, HttpStatus.OK);
-    }
-    @PostMapping("/delete")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
-    public ResponseEntity<CategoryDTO> delete(@RequestParam Long categoryId) {
-        CategoryDTO categoryDTO = categoryService.delete(categoryId);
-        return new ResponseEntity<>(categoryDTO, HttpStatus.OK);
-    }
-    @PostMapping("/search")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
-    public ResponseEntity<List<CategoryDTO>> search(@RequestBody CategoryDTO categoryDTO) {
-        List<CategoryDTO> CategoryDTOList = categoryService.search(categoryDTO);
-        return new ResponseEntity<>(CategoryDTOList, HttpStatus.OK);
-    }
 }

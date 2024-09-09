@@ -52,8 +52,8 @@ public class ProductsController {
 
     @PostMapping("/bulk-upload")
     @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
-    public ResponseEntity<List<ProductDTO>> bulkUpload(@RequestBody BulkUploadDTO inventoryDetails) {
-        List<ProductDTO> productDTOList = productService.bulkUpload(inventoryDetails);
-        return new ResponseEntity<>(productDTOList, HttpStatus.OK);
+    public ResponseEntity<String> bulkUpload(@RequestBody BulkUploadDTO inventoryDetails) {
+        String uploadMessage = productService.bulkUpload(inventoryDetails);
+        return new ResponseEntity<>(uploadMessage, HttpStatus.OK);
     }
 }
