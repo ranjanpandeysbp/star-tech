@@ -1,14 +1,18 @@
 package com.ims.service.impl;
 
+import com.ims.CommonUtil;
 import com.ims.dto.CategoryDTO;
 import com.ims.dto.ErrorDTO;
 import com.ims.dto.ProductDTO;
 import com.ims.entity.CategoryEntity;
 import com.ims.entity.ECurrency;
 import com.ims.entity.ProductEntity;
+import com.ims.entity.UserEntity;
 import com.ims.exception.BusinessException;
 import com.ims.repository.CategoryRepository;
+import com.ims.repository.UserRepository;
 import com.ims.service.ImsService;
+import com.ims.service.UserDetailsImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,12 +27,20 @@ public class CategoryServiceImpl implements ImsService<CategoryDTO, CategoryDTO>
 
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    CommonUtil commonUtil;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public CategoryDTO add(CategoryDTO input) {
         CategoryEntity categoryEntity = new CategoryEntity();
         BeanUtils.copyProperties(input, categoryEntity);
         categoryEntity.setActive(true);
+        UserDetailsImpl userDetails = commonUtil.loggedInUser();
+        UserEntity ue = userRepository.findById(userDetails.getId()).get();
+        categoryEntity.setMerchant(ue);
         categoryEntity = categoryRepository.save(categoryEntity);
         BeanUtils.copyProperties(categoryEntity, input);
         return input;

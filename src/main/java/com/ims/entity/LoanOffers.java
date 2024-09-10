@@ -19,6 +19,7 @@ public class LoanOffers {
     private Double maxLoanAmount;
     private Double minInterestRate;
     private Double maxInterestRate;
+    private Double percentTurnover;
     private String industry;
     private String loanCriteria;
     @ManyToOne

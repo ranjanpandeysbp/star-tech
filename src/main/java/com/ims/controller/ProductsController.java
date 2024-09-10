@@ -25,12 +25,13 @@ public class ProductsController {
         return new ResponseEntity<>(input, HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("/{merchantId}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
-    public ResponseEntity<List<ProductDTO>> getAll() {
-        List<ProductDTO> dtoList = productService.getAll();
+    public ResponseEntity<List<ProductDTO>> getAllByUser(@PathVariable Long merchantId) {
+        List<ProductDTO> dtoList = productService.getAllByUser(merchantId);
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
     }
+
     @PostMapping("/update")
     @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
     public ResponseEntity<ProductDTO> update(@RequestBody ProductDTO input, @RequestParam Long productId) {

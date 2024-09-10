@@ -16,5 +16,6 @@ public class QuoteEntity {
     private Long id;
     private String industry;
     private String email;
-    private Double amount;
+    private Double loanAmount;
+    private Double turnOver;
 }

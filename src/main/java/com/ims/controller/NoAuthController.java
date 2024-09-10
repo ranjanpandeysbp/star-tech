@@ -19,7 +19,7 @@ public class NoAuthController {
         return new ResponseEntity<>(qe, HttpStatus.CREATED);
     }
     @GetMapping("/quotes/details")
-    public ResponseEntity<QuoteEntity> getQuote(String email){
+    public ResponseEntity<QuoteEntity> getQuote(@RequestParam String email){
         QuoteEntity qe = quoteRepository.findByEmail(email);
         return new ResponseEntity<>(qe, HttpStatus.CREATED);
     }

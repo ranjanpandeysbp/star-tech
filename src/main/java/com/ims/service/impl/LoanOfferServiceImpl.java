@@ -2,6 +2,7 @@ package com.ims.service.impl;
 
 import com.ims.dto.ErrorDTO;
 import com.ims.dto.LoanOfferDTO;
+import com.ims.dto.UserDTO;
 import com.ims.entity.*;
 import com.ims.exception.BusinessException;
 import com.ims.repository.LoanOfferRepository;
@@ -99,6 +100,9 @@ public class LoanOfferServiceImpl implements ImsService<LoanOfferDTO,LoanOfferDT
         for(LoanOffers loanOffer: loanOfferList){
             loanOfferDTO = new LoanOfferDTO();
             BeanUtils.copyProperties(loanOffer, loanOfferDTO);
+            UserDTO userDTO = new UserDTO();
+            BeanUtils.copyProperties(loanOffer.getLender(), userDTO);
+            loanOfferDTO.setLender(userDTO);
             loanOfferDTO.setId(loanOffer.getId());
             dtos.add(loanOfferDTO);
         }

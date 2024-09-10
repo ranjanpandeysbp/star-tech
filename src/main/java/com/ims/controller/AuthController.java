@@ -207,4 +207,8 @@ public class AuthController {
     public UserDetailsImpl getCurrentUser(Principal principal) {
         return commonUtil.loggedInUser();
     }
+    @GetMapping("/user-by-email")
+    public UserDetailsImpl getUserByEmail(Principal principal) {
+        return commonUtil.loggedInUser();
+    }
 }

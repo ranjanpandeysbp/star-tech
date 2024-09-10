@@ -2,6 +2,7 @@ package com.ims.service.impl;
 
 import com.ims.CommonUtil;
 import com.ims.dto.BulkUploadDTO;
+import com.ims.dto.CategoryDTO;
 import com.ims.dto.ErrorDTO;
 import com.ims.dto.ProductDTO;
 import com.ims.entity.*;
@@ -82,6 +83,9 @@ public class ProductServiceImpl implements ImsService<ProductDTO, ProductDTO> {
                 .orElseThrow(() -> new BusinessException(List.of(new ErrorDTO("NOT_FOUND", "Cannot find Product with Id: "+id))));
         ProductDTO productDTO = new ProductDTO();
         BeanUtils.copyProperties(pe, productDTO);
+        CategoryDTO categoryDTO = new CategoryDTO();
+        BeanUtils.copyProperties(pe.getCategory(), categoryDTO);
+        productDTO.setCategory(categoryDTO);
         productDTO.setProductId(pe.getProductId());
         return productDTO;
     }
@@ -92,7 +96,29 @@ public class ProductServiceImpl implements ImsService<ProductDTO, ProductDTO> {
         return entityList.stream().map(productEntity -> {
             ProductDTO productDTO = new ProductDTO();
             BeanUtils.copyProperties(productEntity, productDTO);
-            productDTO.setCategoryId(productEntity.getCategory().getCategoryId());
+            CategoryDTO categoryDTO = new CategoryDTO();
+            if(productEntity.getCategory() != null) {
+                BeanUtils.copyProperties(productEntity.getCategory(), categoryDTO);
+            }
+            productDTO.setCategory(categoryDTO);
+            productDTO.setProductId(productEntity.getProductId());
+            productDTO.setMerchantId(productEntity.getMerchant().getId());
+            productDTO.setCurrency(productEntity.getCurrency().toString());
+            return productDTO;
+        }).collect(Collectors.toList());
+    }
+
+
+    public List<ProductDTO> getAllByUser(Long merchantId) {
+        List<ProductEntity> entityList = productRepository.findAllByMerchantId(merchantId);
+        return entityList.stream().map(productEntity -> {
+            ProductDTO productDTO = new ProductDTO();
+            BeanUtils.copyProperties(productEntity, productDTO);
+            CategoryDTO categoryDTO = new CategoryDTO();
+            if(productEntity.getCategory() != null) {
+                BeanUtils.copyProperties(productEntity.getCategory(), categoryDTO);
+            }
+            productDTO.setCategory(categoryDTO);
             productDTO.setProductId(productEntity.getProductId());
             productDTO.setMerchantId(productEntity.getMerchant().getId());
             productDTO.setCurrency(productEntity.getCurrency().toString());

@@ -20,4 +20,5 @@ public class LoanOfferDTO {
     private String loanCriteria;
     private String industry;
     private Long lenderId;
+    private UserDTO lender;
 }
