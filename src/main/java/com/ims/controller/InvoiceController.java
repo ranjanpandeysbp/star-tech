@@ -1,7 +1,6 @@
 package com.ims.controller;
 
 import com.ims.entity.InvoiceEntity;
-import com.ims.entity.SalesEntity;
 import com.ims.repository.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
