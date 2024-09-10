@@ -1,0 +1,20 @@
+[
+  {
+    "kvk": 1111,
+    "year": 2021,
+    "taxPaid": 2000,
+    "profit_loss": 90000
+  },
+  {
+    "kvk": 2222,
+    "year": 2022,
+    "taxPaid": 700,
+    "profit_loss": 67000
+  },
+  {
+    "kvk": 3333,
+    "year": 2023,
+    "taxPaid": 0,
+    "profit_loss": -7000
+  }
+]
