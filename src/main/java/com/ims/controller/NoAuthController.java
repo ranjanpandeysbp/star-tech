@@ -1,17 +1,25 @@
 package com.ims.controller;
 
+import com.ims.dto.LoanOfferDTO;
 import com.ims.entity.QuoteEntity;
 import com.ims.repository.QuoteRepository;
+import com.ims.service.impl.LoanOfferServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/noauth")
 public class NoAuthController {
+
     @Autowired
     private QuoteRepository quoteRepository;
+    @Autowired
+    private LoanOfferServiceImpl loanOfferServiceImpl;
 
     @PostMapping("/quotes/save")
     public ResponseEntity<QuoteEntity> saveQuote(@RequestBody QuoteEntity qe){
@@ -22,5 +30,10 @@ public class NoAuthController {
     public ResponseEntity<QuoteEntity> getQuote(@RequestParam String email){
         QuoteEntity qe = quoteRepository.findByEmail(email);
         return new ResponseEntity<>(qe, HttpStatus.CREATED);
+    }
+    @PostMapping("/search-loan-offers")
+    public ResponseEntity<List<LoanOfferDTO>> searchLoanOffers(@RequestParam Double loanAmount) {
+        List<LoanOfferDTO> loanOfferDTOList = loanOfferServiceImpl.searchLoanOffers(loanAmount);
+        return new ResponseEntity<>(loanOfferDTOList, HttpStatus.OK);
     }
 }
