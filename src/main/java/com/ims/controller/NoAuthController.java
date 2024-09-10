@@ -1,5 +1,6 @@
 package com.ims.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.ims.dto.LoanOfferDTO;
 import com.ims.entity.QuoteEntity;
 import com.ims.repository.QuoteRepository;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -35,5 +37,14 @@ public class NoAuthController {
     public ResponseEntity<List<LoanOfferDTO>> searchLoanOffers(@RequestParam Double loanAmount) {
         List<LoanOfferDTO> loanOfferDTOList = loanOfferServiceImpl.searchLoanOffers(loanAmount);
         return new ResponseEntity<>(loanOfferDTOList, HttpStatus.OK);
+    }
+    @GetMapping("/read-json")
+    public ResponseEntity<JsonNode> readJsonFile() {
+        try {
+            JsonNode jsonNode = loanOfferServiceImpl.readJsonFile();
+            return new ResponseEntity<>(jsonNode, HttpStatus.OK);
+        } catch (IOException e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

@@ -1,5 +1,7 @@
 package com.ims.service.impl;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ims.dto.ErrorDTO;
 import com.ims.dto.LoanOfferDTO;
 import com.ims.dto.UserDTO;
@@ -10,8 +12,12 @@ import com.ims.repository.UserRepository;
 import com.ims.service.ImsService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -107,5 +113,11 @@ public class LoanOfferServiceImpl implements ImsService<LoanOfferDTO,LoanOfferDT
             dtos.add(loanOfferDTO);
         }
         return dtos;
+    }
+    public JsonNode readJsonFile() throws IOException {
+        Path jsonFilePath = new ClassPathResource("json/tax-profit-loss.json").getFile().toPath();
+        String jsonContent = Files.readString(jsonFilePath);
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readTree(jsonContent);
     }
 }
