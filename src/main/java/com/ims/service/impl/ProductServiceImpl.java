@@ -99,6 +99,7 @@ public class ProductServiceImpl implements ImsService<ProductDTO, ProductDTO> {
             CategoryDTO categoryDTO = new CategoryDTO();
             if(productEntity.getCategory() != null) {
                 BeanUtils.copyProperties(productEntity.getCategory(), categoryDTO);
+                productDTO.setCategoryName(productEntity.getCategory().getCategoryName());
             }
             productDTO.setCategory(categoryDTO);
             productDTO.setProductId(productEntity.getProductId());

@@ -19,6 +19,7 @@ public class ProductDTO {
     private Integer quantity;
     private Long merchantId;
     private Long categoryId;
+    private String categoryName;
     private CategoryDTO category;
     private Double price;
     private String currency;
