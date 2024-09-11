@@ -94,6 +94,21 @@ public class LoanOfferServiceImpl implements ImsService<LoanOfferDTO,LoanOfferDT
             return loanOfferDTO;
         }).collect(Collectors.toList());
     }
+      public List<LoanOfferDTO> getAllByLender(Long lenderId) {
+        List<LoanOffers> entityList = loanOfferRepository.findAllByLenderId(lenderId);
+        return entityList.stream().map(loanOfferEntity -> {
+            LoanOfferDTO loanOfferDTO = new LoanOfferDTO();
+            BeanUtils.copyProperties(loanOfferEntity, loanOfferDTO);
+            loanOfferDTO.setLoanCriteria(loanOfferEntity.getLoanCriteria());
+            loanOfferDTO.setMaxLoanAmount(loanOfferEntity.getMaxLoanAmount());
+            loanOfferDTO.setMinLoanAmount(loanOfferEntity.getMinLoanAmount());
+            loanOfferDTO.setMaxInterestRate(loanOfferEntity.getMaxInterestRate());
+            loanOfferDTO.setMinInterestRate(loanOfferEntity.getMinInterestRate());
+            loanOfferDTO.setId(loanOfferEntity.getId());
+            loanOfferDTO.setLenderId(loanOfferEntity.getLender().getId());
+            return loanOfferDTO;
+        }).collect(Collectors.toList());
+    }
 
     @Override
     public List<LoanOfferDTO> search(LoanOfferDTO input) {

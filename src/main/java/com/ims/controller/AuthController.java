@@ -4,13 +4,11 @@ import com.ims.CommonUtil;
 import com.ims.dto.AuthRequestDTO;
 import com.ims.dto.AuthResponseDTO;
 import com.ims.entity.*;
-import com.ims.repository.MerchantManagerRepository;
-import com.ims.repository.MerchantVendorRepository;
-import com.ims.repository.RoleRepository;
-import com.ims.repository.UserRepository;
+import com.ims.repository.*;
 import com.ims.service.JwtService;
 import com.ims.service.UserDetailsImpl;
 import com.ims.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -36,20 +34,21 @@ public class AuthController {
     private JwtService jwtService;
     private UserService userDetailsService;
     private CommonUtil commonUtil;
+    private QuoteRepository quoteRepository;
 
     public AuthController(UserRepository userRepository,
                           PasswordEncoder passwordEncoder,
                           RoleRepository roleRepository,
                           AuthenticationManager authenticationManager,
                           JwtService jwtService, CommonUtil commonUtil,
-                          MerchantManagerRepository merchantManagerRepository,
-                          MerchantVendorRepository merchantVendorRepository) {
+                          QuoteRepository quoteRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
         this.commonUtil = commonUtil;
+        this.quoteRepository = quoteRepository;
     }
     @GetMapping("/update-role/{userId}/{role}")
     public ResponseEntity<?> updateRole(@PathVariable Long userId, @PathVariable String role){
@@ -88,6 +87,8 @@ public class AuthController {
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
         AuthResponseDTO res = new AuthResponseDTO();
+        QuoteEntity qe = quoteRepository.findByEmail(userDetails.getUsername());
+        res.setQuote(qe);
         res.setToken(jwt);
         res.setId(userDetails.getId());
         res.setFirstName(userDetails.getFirstName());

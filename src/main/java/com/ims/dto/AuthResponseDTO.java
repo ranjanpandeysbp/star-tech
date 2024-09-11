@@ -2,6 +2,7 @@ package com.ims.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.ims.entity.QuoteEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,4 +19,5 @@ public class AuthResponseDTO {
     private String firstName;
     private String lastName;
     private List<String> roles;
+    private QuoteEntity quote;
 }

@@ -27,6 +27,12 @@ public class LoanOfferController {
         return new ResponseEntity<>(loanOfferResponse, HttpStatus.CREATED);
     }
 
+    @GetMapping("/lenderId")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT') or hasRole('LENDER')")
+    public ResponseEntity<List<LoanOfferDTO>> getAllByLender(@PathVariable Long lenderId) {
+        List<LoanOfferDTO> loanOfferDTOlist = loanOfferServiceImpl.getAllByLender(lenderId);
+        return new ResponseEntity<>(loanOfferDTOlist, HttpStatus.OK);
+    }
     @GetMapping
     @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT') or hasRole('LENDER')")
     public ResponseEntity<List<LoanOfferDTO>> getAll() {

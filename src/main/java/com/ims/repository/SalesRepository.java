@@ -1,6 +1,5 @@
 package com.ims.repository;
 
-import com.ims.entity.BrandEntity;
 import com.ims.entity.SalesEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 

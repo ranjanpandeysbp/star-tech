@@ -19,7 +19,8 @@ public class InvoiceEntity {
     private String id;
     private String name;
     private String description;
-    private List<SalesEntity> sales;
+    @ManyToOne
+    private UserEntity merchant;
     private Double invoiceAmount;
     private LocalDateTime createdDateTime;
     private LocalDateTime updatedDateTime;

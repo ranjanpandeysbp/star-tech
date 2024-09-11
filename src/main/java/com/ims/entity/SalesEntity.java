@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SalesEntity {
+public class SalesEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -26,6 +27,6 @@ public class SalesEntity {
     private String buyerAddress;
     private String buyerPhone;
     private String buyerEmail;
-
+    private Long invoiceId;
     private LocalDateTime createdAt;
 }
