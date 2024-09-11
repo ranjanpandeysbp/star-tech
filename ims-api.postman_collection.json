@@ -45,7 +45,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"password\": \"secret\",\r\n    \"email\": \"merchantone@gmail.com\"\r\n}",
+					"raw": "{\r\n    \"password\": \"secret\",\r\n    \"email\": \"lenderone@gmail.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -365,7 +365,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU5OTI2ODgsImV4cCI6MTcyNjAxMjY4OH0.dWgOuAEUfoapORyh6PIguH5UGI5fwacYXW2k9MBnoDc",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjYwNzgwMTEsImV4cCI6MTcyNjA5ODAxMX0.to_gN9m6AQOHrKsV9mf1rDntN2zmio_m4MgqJBs0SsU",
 							"type": "string"
 						}
 					]
@@ -374,7 +374,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"productName\": \"Mobile\",\r\n    \"quantity\": 200,\r\n    \"merchantId\": 1,\r\n    \"categoryId\": 1,\r\n    \"price\": 445,\r\n    \"currency\": \"EUR\"\r\n\r\n}",
+					"raw": "{\r\n    \"productName\": \"Pen\",\r\n    \"quantity\": 200,\r\n    \"merchantId\": 1,\r\n    \"categoryId\": 2,\r\n    \"price\": 46,\r\n    \"currency\": \"EUR\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -406,7 +406,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjYwMDI1MzMsImV4cCI6MTcyNjAyMjUzM30.t5bJSeYC5jO4ZqQL-m8pqoHn4WkzO86wrMT7irs1Lrc",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjYwODM1NDgsImV4cCI6MTcyNjEwMzU0OH0.0eqHemTlaHjmSOHJXlWyBJwT_9D5PVyFYlmk_b_UOyY",
 							"type": "string"
 						}
 					]
@@ -414,7 +414,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/products",
+					"raw": "http://localhost:8080/api/v1/auth/products/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -424,7 +424,8 @@
 						"api",
 						"v1",
 						"auth",
-						"products"
+						"products",
+						"1"
 					]
 				}
 			},
@@ -486,7 +487,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU5MTcyNzUsImV4cCI6MTcyNTkzNzI3NX0.Fz1S_PXdvi3U3uU8onlf7qVVEMOnBLLVzGHK6Pv_YM0",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjYwNzc1NTAsImV4cCI6MTcyNjA5NzU1MH0.tv7AvlFo27MHkWHDwvcNpq4SPwJVbAvLNfi9_GUMiO0",
 							"type": "string"
 						}
 					]
@@ -1227,7 +1228,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/noauth/read-json",
+					"raw": "http://localhost:8080/api/v1/noauth/read-json?jsonFileName=transaction",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1238,6 +1239,12 @@
 						"v1",
 						"noauth",
 						"read-json"
+					],
+					"query": [
+						{
+							"key": "jsonFileName",
+							"value": "transaction"
+						}
 					]
 				}
 			},
@@ -1249,10 +1256,19 @@
 				"auth": {
 					"type": "noauth"
 				},
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"startDate\": \"08/08/2024 14:30:00\",\n    \"endDate\": \"11/10/2024 14:30:00\",\n    \"merchantId\":1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/noauth/inventory-details/1?startDate=2024-08-08T10:24:21.73924&endDate=2024-11-08T10:24:21.73924",
+					"raw": "http://localhost:8080/api/v1/noauth/inventory-details",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1262,17 +1278,209 @@
 						"api",
 						"v1",
 						"noauth",
-						"inventory-details",
-						"1"
+						"inventory-details"
 					],
 					"query": [
 						{
 							"key": "startDate",
-							"value": "2024-08-08T10:24:21.73924"
+							"value": "2024-08-08",
+							"disabled": true
 						},
 						{
 							"key": "endDate",
-							"value": "2024-11-08T10:24:21.73924"
+							"value": "2024-11-08",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add sales for 1 merchant",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmVAZ21haWwuY29tIiwiaWF0IjoxNzI2MDkwNTYyLCJleHAiOjE3MjYxMTA1NjJ9.6BiqaD8B-OKfy1x-xbKMsn6ke8Y5z14t7vn28Rn0T5Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"saleAmount\" :24.0,\n        \"soldQuantity\" : 45,\n        \"product\":\n        {\n            \"productId\":1\n        },\n        \"buyerName\": \"john doe\",\n        \"buyerAddress\": \"Almere\",\n        \"buyerPhone\": \"12345\",\n        \"buyerEmail\": \"j@d.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/sales",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"sales"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2024-08-08T10:24:21.73924",
+							"disabled": true
+						},
+						{
+							"key": "endDate",
+							"value": "2024-11-08T10:24:21.73924",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add quotes",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"industry\":\"Auto\",\n\"email\": \"lenderone@gmail.com\",\n\"loanAmount\": 333333,\n\"turnOver\":445566\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/noauth/quotes/save",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"noauth",
+						"quotes",
+						"save"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2024-08-08T10:24:21.73924",
+							"disabled": true
+						},
+						{
+							"key": "endDate",
+							"value": "2024-11-08T10:24:21.73924",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get quote",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/noauth/quotes/details?email=abc1@gmail.com",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"noauth",
+						"quotes",
+						"details"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "abc1@gmail.com"
+						},
+						{
+							"key": "endDate",
+							"value": "2024-11-08T10:24:21.73924",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get sale between two dates",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmVAZ21haWwuY29tIiwiaWF0IjoxNzI2MDkwNTYyLCJleHAiOjE3MjYxMTA1NjJ9.6BiqaD8B-OKfy1x-xbKMsn6ke8Y5z14t7vn28Rn0T5Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"startDate\": \"08/08/2024 14:30:00\",\n    \"endDate\": \"11/10/2024 14:30:00\",\n    \"merchantId\":1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/auth/transactionDetails",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"transactionDetails"
+					],
+					"query": [
+						{
+							"key": "endDate",
+							"value": "2024-11-08T10:24:21.73924",
+							"disabled": true
 						}
 					]
 				}
