@@ -2,6 +2,7 @@ package com.ims.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.ims.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,8 +17,8 @@ import java.time.LocalDateTime;
 public class LoanApplicationResponseDTO {
 
     private Long id;
-    private UserDTO merchant;
-    private UserDTO lender;
+    private UserEntity merchant;
+    private UserEntity lender;
     private Double loanAmountRequested;
     private String currency;
     private String eLoanStatusLender;
