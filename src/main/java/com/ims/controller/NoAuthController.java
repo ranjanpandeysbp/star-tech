@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/noauth")
@@ -33,12 +34,16 @@ public class NoAuthController {
 
     @PostMapping("/quotes/save")
     public ResponseEntity<QuoteEntity> saveQuote(@RequestBody QuoteEntity qe){
+        Optional<QuoteEntity> existingCustomer = quoteRepository.findByEmail(qe.getEmail());
+        if (existingCustomer.isPresent()) {
+            throw new RuntimeException("Email is already in use");
+        }
         qe = quoteRepository.save(qe);
         return new ResponseEntity<>(qe, HttpStatus.CREATED);
     }
     @GetMapping("/quotes/details")
     public ResponseEntity<QuoteEntity> getQuote(@RequestParam String email){
-        QuoteEntity qe = quoteRepository.findByEmail(email);
+        QuoteEntity qe = quoteRepository.findByEmail(email).get();
         return new ResponseEntity<>(qe, HttpStatus.OK);
     }
     @PostMapping("/search-loan-offers")
@@ -47,9 +52,9 @@ public class NoAuthController {
         return new ResponseEntity<>(loanOfferDTOList, HttpStatus.OK);
     }
     @GetMapping("/read-json")
-    public ResponseEntity<JsonNode> readJsonFile() {
+    public ResponseEntity<JsonNode> readJsonFile(@RequestParam String jsonFileName) {
         try {
-            JsonNode jsonNode = loanOfferServiceImpl.readJsonFile();
+            JsonNode jsonNode = loanOfferServiceImpl.readJsonFile(jsonFileName);
             return new ResponseEntity<>(jsonNode, HttpStatus.OK);
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

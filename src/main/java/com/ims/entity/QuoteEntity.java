@@ -15,6 +15,7 @@ public class QuoteEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String industry;
+    @Column(unique = true, nullable = false)
     private String email;
     private Double loanAmount;
     private Double turnOver;

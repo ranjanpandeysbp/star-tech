@@ -1,0 +1,12 @@
+{
+  "accountNumber": "NL12ABNA99999901",
+  "transactionId": "8297K5939874172S0AC",
+  "transactionTimestamp": "2018-10-24-11:59:35.710",
+  "bookDate": "2018-10-24",
+  "balanceAfterMutation": 6941.18,
+  "counterPartyAccountNumber": "NL55INGB995468517",
+  "counterPartyName": "Bicycle Manufacturing Parts",
+  "amount": 10.15,
+  "currency": "EUR",
+  "status": "EXECUTED"
+}

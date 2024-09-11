@@ -87,7 +87,7 @@ public class AuthController {
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
         AuthResponseDTO res = new AuthResponseDTO();
-        QuoteEntity qe = quoteRepository.findByEmail(userDetails.getUsername());
+        QuoteEntity qe = quoteRepository.findByEmail(userDetails.getUsername()).get();
         res.setQuote(qe);
         res.setToken(jwt);
         res.setId(userDetails.getId());

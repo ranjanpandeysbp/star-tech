@@ -129,8 +129,8 @@ public class LoanOfferServiceImpl implements ImsService<LoanOfferDTO,LoanOfferDT
         }
         return dtos;
     }
-    public JsonNode readJsonFile() throws IOException {
-        Path jsonFilePath = new ClassPathResource("json/tax-profit-loss.json").getFile().toPath();
+    public JsonNode readJsonFile(String jsonFileName) throws IOException {
+        Path jsonFilePath = new ClassPathResource("json/"+jsonFileName+".json").getFile().toPath();
         String jsonContent = Files.readString(jsonFilePath);
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readTree(jsonContent);
