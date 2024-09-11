@@ -42,6 +42,8 @@ public class LoanApplicationServiceImpl implements LoanApplicationService{
         UserEntity merchant = userRepository.findById(requestDTO.getMerchantId()).get();
         loanApplication.setMerchant(merchant);
         loanApplication.setCurrency(ECurrency.valueOf(requestDTO.getCurrency()));
+        loanApplication.setCreatedDateTime(LocalDateTime.now());
+        loanApplication.setUpdatedDateTime(LocalDateTime.now());
         loanApplication = loanApplicationRepository.save(loanApplication);
 
         return "Loan applied successfully, reference Id is: "+loanApplication.getId();
@@ -61,6 +63,13 @@ public class LoanApplicationServiceImpl implements LoanApplicationService{
         for(LoanApplication la: loanApplicationList){
             responseDTO = new LoanApplicationResponseDTO();
             BeanUtils.copyProperties(la, responseDTO);
+            responseDTO.setLender(la.getLender());
+            responseDTO.setMerchant(la.getMerchant());
+            responseDTO.setELoanStatusLender(la.getELoanStatusLender().toString());
+            responseDTO.setELoanStatusMerchant(la.getELoanStatusMerchant().toString());
+            responseDTO.setCreatedDateTime(la.getCreatedDateTime());
+            responseDTO.setUpdatedDateTime(la.getUpdatedDateTime());
+            responseDTO.setCurrency(la.getCurrency().toString());
             dtos.add(responseDTO);
         }
         return dtos;
