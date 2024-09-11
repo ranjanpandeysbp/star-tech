@@ -175,8 +175,6 @@ public class ProductServiceImpl implements ImsService<ProductDTO, ProductDTO> {
     }
 
     public InventoryDetailsResponse getInventoryDetails(InventoryDetailRequest inventoryDetailRequest) {
-        //LocalDateTime startDateLocalDateTime = getLocalDateTime(dateFormatDTO.getStartDate());
-        //LocalDateTime endDateLocalDateTime = getLocalDateTime(endDate);
         List<ProductEntity> productEntities = productRepository.findByMerchantIdAndCreatedAtBetween(inventoryDetailRequest.getMerchantId(),
                 inventoryDetailRequest.getStartDate(),
                 inventoryDetailRequest.getEndDate());
@@ -189,9 +187,4 @@ public class ProductServiceImpl implements ImsService<ProductDTO, ProductDTO> {
         return new InventoryDetailsResponse(inventoryDataList);
     }
 
-//    private LocalDateTime getLocalDateTime(LocalDate startDate) {
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-//        LocalDateTime dateTime = LocalDateTime.parse(startDate, formatter);
-//        return dateTime;
-//    }
 }
