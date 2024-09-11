@@ -406,7 +406,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU5OTI2ODgsImV4cCI6MTcyNjAxMjY4OH0.dWgOuAEUfoapORyh6PIguH5UGI5fwacYXW2k9MBnoDc",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjYwMDI1MzMsImV4cCI6MTcyNjAyMjUzM30.t5bJSeYC5jO4ZqQL-m8pqoHn4WkzO86wrMT7irs1Lrc",
 							"type": "string"
 						}
 					]
@@ -1238,6 +1238,42 @@
 						"v1",
 						"noauth",
 						"read-json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sale-inventory-details for merchant",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/noauth/inventory-details/1?startDate=2024-08-08T10:24:21.73924&endDate=2024-11-08T10:24:21.73924",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"noauth",
+						"inventory-details",
+						"1"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2024-08-08T10:24:21.73924"
+						},
+						{
+							"key": "endDate",
+							"value": "2024-11-08T10:24:21.73924"
+						}
 					]
 				}
 			},
