@@ -39,7 +39,7 @@ public class NoAuthController {
     @GetMapping("/quotes/details")
     public ResponseEntity<QuoteEntity> getQuote(@RequestParam String email){
         QuoteEntity qe = quoteRepository.findByEmail(email);
-        return new ResponseEntity<>(qe, HttpStatus.CREATED);
+        return new ResponseEntity<>(qe, HttpStatus.OK);
     }
     @PostMapping("/search-loan-offers")
     public ResponseEntity<List<LoanOfferDTO>> searchLoanOffers(@RequestParam Double loanAmount) {
