@@ -1,10 +1,14 @@
 package com.ims.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.ims.dto.InventoryDetailRequest;
+import com.ims.dto.InventoryDetailsResponse;
 import com.ims.dto.LoanOfferDTO;
 import com.ims.entity.QuoteEntity;
+import com.ims.repository.ProductRepository;
 import com.ims.repository.QuoteRepository;
 import com.ims.service.impl.LoanOfferServiceImpl;
+import com.ims.service.impl.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +16,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -22,6 +28,8 @@ public class NoAuthController {
     private QuoteRepository quoteRepository;
     @Autowired
     private LoanOfferServiceImpl loanOfferServiceImpl;
+    @Autowired
+    private ProductServiceImpl productService;
 
     @PostMapping("/quotes/save")
     public ResponseEntity<QuoteEntity> saveQuote(@RequestBody QuoteEntity qe){
@@ -47,4 +55,11 @@ public class NoAuthController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/inventory-details")
+    public ResponseEntity<InventoryDetailsResponse> getInventoryDetail(@RequestBody InventoryDetailRequest inventoryDetailRequest) {
+        InventoryDetailsResponse inventoryDetailsResponse = productService.getInventoryDetails(inventoryDetailRequest);
+        return new ResponseEntity<>(inventoryDetailsResponse, HttpStatus.OK);
+    }
+
 }

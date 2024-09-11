@@ -34,7 +34,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable().cors().and()
                 .authorizeHttpRequests()
-                .requestMatchers("api/v1/auth/signin", "api/v1/noauth/**", "api/v1/auth/signup/**").permitAll()
+                .requestMatchers("api/v1/auth/signin", "api/v1/noauth/**","api/v1/noauth/inventory-details/**", "api/v1/auth/signup/**").permitAll()
                 .and()
                 .authorizeHttpRequests().requestMatchers("/api/v1/auth/merchant/**","/api/v1/auth/current-user","/api/test/**").authenticated()
                 .and()

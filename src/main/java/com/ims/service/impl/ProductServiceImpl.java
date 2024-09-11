@@ -1,10 +1,7 @@
 package com.ims.service.impl;
 
 import com.ims.CommonUtil;
-import com.ims.dto.BulkUploadDTO;
-import com.ims.dto.CategoryDTO;
-import com.ims.dto.ErrorDTO;
-import com.ims.dto.ProductDTO;
+import com.ims.dto.*;
 import com.ims.entity.*;
 import com.ims.exception.BusinessException;
 import com.ims.repository.*;
@@ -14,7 +11,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -175,4 +174,18 @@ public class ProductServiceImpl implements ImsService<ProductDTO, ProductDTO> {
         categoryEntity.setMerchant(userEntity);
         return categoryRepository.save(categoryEntity);
     }
+
+    public InventoryDetailsResponse getInventoryDetails(InventoryDetailRequest inventoryDetailRequest) {
+        List<ProductEntity> productEntities = productRepository.findByMerchantIdAndCreatedAtBetween(inventoryDetailRequest.getMerchantId(),
+                inventoryDetailRequest.getStartDate(),
+                inventoryDetailRequest.getEndDate());
+
+        List<InventoryData> inventoryDataList = productEntities.stream()
+                .map(product ->
+                        InventoryData.builder().dateOfSale(product.getCreatedAt()).price(product.getPrice()).quantity(product.getQuantity()).build())
+                .collect(Collectors.toList());
+
+        return new InventoryDetailsResponse(inventoryDataList);
+    }
+
 }
