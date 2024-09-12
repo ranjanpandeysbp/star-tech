@@ -14,7 +14,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"lender\",\r\n    \"lastName\": \"one\",\r\n    \"password\": \"secret\",\r\n    \"email\": \"lenderone1@gmail.com\",\r\n    \"nationality\": \"Indian\",\r\n    \"phone\": \"9876543210\",\r\n    \"dob\": \"01/01/1970\",\r\n    \"gender\": \"Male\",\r\n    \"roles\": [\"ROLE_LENDER\"] \r\n}",
+					"raw": "{\r\n    \"firstName\": \"Pawan\",\r\n    \"lastName\": \"Koul SME\",\r\n    \"password\": \"secret\",\r\n    \"email\": \"pawan.sme@gmail.com\",\r\n    \"nationality\": \"Indian\",\r\n    \"phone\": \"9876543210\",\r\n    \"dob\": \"01/01/1970\",\r\n    \"gender\": \"Male\",\r\n    \"roles\": [\"ROLE_MERCHANT\"] \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -22,12 +22,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/signup/merchant",
-					"protocol": "http",
+					"raw": "{{host}}/api/v1/auth/signup/merchant",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -46,7 +44,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"password\": \"secret\",\r\n    \"email\": \"lenderone1@gmail.com\"\r\n}",
+					"raw": "{\r\n    \"password\": \"secret\",\r\n    \"email\": \"merchant7@gmail.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -54,12 +52,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/signin",
-					"protocol": "http",
+					"raw": "{{host}}/api/v1/auth/signin",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -81,7 +77,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU3ODM1MDIsImV4cCI6MTcyNTc4MzcwMn0.bpCARQ3iOJd5jauUoPuHXYRXTYV2FiJ5wUAhTLANBWQ",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmU1QGdtYWlsLmNvbSIsImlhdCI6MTcyNjE0MzQ5OCwiZXhwIjoxNzI2MTYzNDk4fQ.juSs8gYMXLTdzbtnIlmU2YsJ9s0pv2gSsaitDK6xJag",
 							"type": "string"
 						}
 					]
@@ -98,12 +94,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/current-user",
-					"protocol": "http",
+					"raw": "{{host}}/api/v1/auth/current-user",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -139,12 +133,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/categories",
-					"protocol": "http",
+					"raw": "{{host}}/api/v1/auth/categories",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -171,12 +163,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/categories/1",
-					"protocol": "http",
+					"raw": "{{host}}/api/v1/auth/categories/1",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -204,12 +194,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/categories",
-					"protocol": "http",
+					"raw": "{{host}}/api/v1/auth/categories",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -245,12 +233,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/categories/search",
-					"protocol": "http",
+					"raw": "{{host}}/api/v1/auth/categories/search",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -366,7 +352,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjYwNzgwMTEsImV4cCI6MTcyNjA5ODAxMX0.to_gN9m6AQOHrKsV9mf1rDntN2zmio_m4MgqJBs0SsU",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudDdAZ21haWwuY29tIiwiaWF0IjoxNzI2MTQ4NjkzLCJleHAiOjE3MjYxNjg2OTN9.WxKSTX167FaXU1Nck8x6KqehAZcrVE7UzFXnzK_ofT0",
 							"type": "string"
 						}
 					]
@@ -375,7 +361,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"productName\": \"Pen\",\r\n    \"quantity\": 200,\r\n    \"merchantId\": 1,\r\n    \"categoryId\": 2,\r\n    \"price\": 46,\r\n    \"currency\": \"EUR\"\r\n\r\n}",
+					"raw": "{\r\n    \"productName\": \"Mobile\",\r\n    \"quantity\": 200,\r\n    \"merchantId\": 7,\r\n    \"categoryId\": 2,\r\n    \"price\": 30,\r\n    \"currency\": \"EUR\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -407,7 +393,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjYwODM1NDgsImV4cCI6MTcyNjEwMzU0OH0.0eqHemTlaHjmSOHJXlWyBJwT_9D5PVyFYlmk_b_UOyY",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudDdAZ21haWwuY29tIiwiaWF0IjoxNzI2MTUwNTIwLCJleHAiOjE3MjYxNzA1MjB9.woAmbjeJZBw-kHfrPtxTrMju8Yel8ol4pa3A-Sw7Wa4",
 							"type": "string"
 						}
 					]
@@ -415,7 +401,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/products/1",
+					"raw": "http://localhost:8080/api/v1/auth/products/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -426,7 +412,7 @@
 						"v1",
 						"auth",
 						"products",
-						"1"
+						"2"
 					]
 				}
 			},
@@ -517,6 +503,52 @@
 						"auth",
 						"products",
 						"bulk-upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Unique Products",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXdhbi5zbWVAZ21haWwuY29tIiwiaWF0IjoxNzI2MTU2MTgyLCJleHAiOjE3MjYxNzYxODJ9.34V7f34BEGbdpLVW4AmHE4opFiT3IE5uR9E_n1KSi1k",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/products/unique-products/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"products",
+						"unique-products",
+						"3"
 					]
 				}
 			},
@@ -620,6 +652,89 @@
 			"response": []
 		},
 		{
+			"name": "Add invoice",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudDdAZ21haWwuY29tIiwiaWF0IjoxNzI2MTU0MjY2LCJleHAiOjE3MjYxNzQyNjZ9.TUEN2Z7XNaTykwHnR8nJPMi--ZA6H30q88tCG8SSaIE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"name\": \"testInvoice\",\n        \"description\": \" invoice description\",\n        \"invoiceAmount\": 20.0,\n        \"invoiceStatus\":  \"APPROVED\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/invoices",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"invoices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all invoices",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudDdAZ21haWwuY29tIiwiaWF0IjoxNzI2MTU0MjY2LCJleHAiOjE3MjYxNzQyNjZ9.TUEN2Z7XNaTykwHnR8nJPMi--ZA6H30q88tCG8SSaIE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"name\": \"testInvoice\",\n        \"description\": \" invoice description\",\n        \"invoiceAmount\": 20.0,\n        \"invoiceStatus\":  \"APPROVED\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/invoices/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"invoices",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Merchant Apply Loan",
 			"request": {
 				"auth": {
@@ -627,7 +742,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmUxQGdtYWlsLmNvbSIsImlhdCI6MTcyNjEzMzEwOSwiZXhwIjoxNzI2MTUzMTA5fQ.aAT7_jb0_di8aTAHLikGNGR7ZN63rtMxubitFmZDQUI",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmUxQGdtYWlsLmNvbSIsImlhdCI6MTcyNjEzNjM2NCwiZXhwIjoxNzI2MTU2MzY0fQ.C0_r9IpwpykIDXNPB2GEL35V6UgdtbLdZqt_dkffT9w",
 							"type": "string"
 						}
 					]
@@ -668,7 +783,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmUxQGdtYWlsLmNvbSIsImlhdCI6MTcyNjEzNDAwMywiZXhwIjoxNzI2MTU0MDAzfQ.MOtciUv--O-hArJjajfZsSfAtpJcdFZBFZM_uPBmCNw",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmUxQGdtYWlsLmNvbSIsImlhdCI6MTcyNjEzNjM2NCwiZXhwIjoxNzI2MTU2MzY0fQ.C0_r9IpwpykIDXNPB2GEL35V6UgdtbLdZqt_dkffT9w",
 							"type": "string"
 						}
 					]
@@ -749,7 +864,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmUxQGdtYWlsLmNvbSIsImlhdCI6MTcyNjEzNDM2NCwiZXhwIjoxNzI2MTU0MzY0fQ.5cPaDw_AqtMNHz28phIyma9AIXzk-_lHaxKxppaPje0",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmUyQGdtYWlsLmNvbSIsImlhdCI6MTcyNjEzNjU5NywiZXhwIjoxNzI2MTU2NTk3fQ.k7_OhDEXrWx6DEmRGAzDPj8752Jq9rr8gkbQp9c44ys",
 							"type": "string"
 						}
 					]
@@ -1195,7 +1310,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU5OTQzMTEsImV4cCI6MTcyNjAxNDMxMX0.P90u1nvl28R5l6kmS5I0wj1SUr_dJNtZJxGn03mO_0M",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudDdAZ21haWwuY29tIiwiaWF0IjoxNzI2MTQ5MDQxLCJleHAiOjE3MjYxNjkwNDF9.exElFrypPpaA9ohW1jtV_h88fridpE1xhK4ZkBMp-4U",
 							"type": "string"
 						}
 					]
@@ -1203,7 +1318,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/products/1",
+					"raw": "http://localhost:8080/api/v1/auth/products/7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -1214,7 +1329,7 @@
 						"v1",
 						"auth",
 						"products",
-						"1"
+						"7"
 					]
 				}
 			},
@@ -1322,12 +1437,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/sales",
-					"protocol": "http",
+					"raw": "{{host}}/api/v1/auth/sales",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -1360,7 +1473,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"industry\":\"Auto\",\n\"email\": \"lenderone@gmail.com\",\n\"loanAmount\": 333333,\n\"turnOver\":445566\n}",
+					"raw": "{\n\"industry\":\"Auto\",\n\"email\": \"merchant7@gmail.com\",\n\"loanAmount\": 333333,\n\"turnOver\":445566\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1368,12 +1481,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/noauth/quotes/save",
-					"protocol": "http",
+					"raw": "{{host}}/api/v1/noauth/quotes/save",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",

@@ -16,7 +16,7 @@ import java.util.List;
 public class InvoiceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String name;
     private String description;
     @ManyToOne
@@ -24,4 +24,5 @@ public class InvoiceEntity {
     private Double invoiceAmount;
     private LocalDateTime createdDateTime;
     private LocalDateTime updatedDateTime;
+    private String invoiceStatus;//APPROVED,PENDING
 }

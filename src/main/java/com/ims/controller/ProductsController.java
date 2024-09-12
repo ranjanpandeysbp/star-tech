@@ -57,4 +57,11 @@ public class ProductsController {
         String uploadMessage = productService.bulkUpload(inventoryDetails);
         return new ResponseEntity<>(uploadMessage, HttpStatus.OK);
     }
+
+    @GetMapping("/unique-products/{merchantId}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
+    public ResponseEntity<List<ProductDTO>> bulkUpload(@PathVariable Long merchantId) {
+        List<ProductDTO> productDetails = productService.getProductDetails(merchantId);
+        return new ResponseEntity<>(productDetails, HttpStatus.OK);
+    }
 }

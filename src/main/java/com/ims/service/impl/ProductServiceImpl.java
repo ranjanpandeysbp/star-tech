@@ -182,10 +182,18 @@ public class ProductServiceImpl implements ImsService<ProductDTO, ProductDTO> {
 
         List<InventoryData> inventoryDataList = productEntities.stream()
                 .map(product ->
-                        InventoryData.builder().dateOfSale(product.getCreatedAt()).price(product.getPrice()).quantity(product.getQuantity()).build())
+                        InventoryData.builder().dateOfSale(product.getCreatedAt()).price(product.getPrice())
+                                .quantity(product.getQuantity()).build())
                 .collect(Collectors.toList());
 
         return new InventoryDetailsResponse(inventoryDataList);
     }
 
+    public List<ProductDTO> getProductDetails(Long id) {
+        List<ProductEntity> productEntityList = productRepository.findAllByMerchantId(id);
+        return   productEntityList.stream().map(productEntity ->
+                ProductDTO.builder().productId(productEntity.getProductId()).productName(productEntity.getProductName())
+                        .build()).toList();
+
+    }
 }

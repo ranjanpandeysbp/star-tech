@@ -11,6 +11,5 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     List<ProductEntity> findAllByProductNameContaining(String productName);
 
     List<ProductEntity> findAllByMerchantId(Long merchantId);
-
     List<ProductEntity> findByMerchantIdAndCreatedAtBetween(Long merchantId, LocalDateTime startDate, LocalDateTime endDate);
 }
