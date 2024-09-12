@@ -14,7 +14,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"Pawan\",\r\n    \"lastName\": \"Koul SME\",\r\n    \"password\": \"secret\",\r\n    \"email\": \"pawan.sme@gmail.com\",\r\n    \"nationality\": \"Indian\",\r\n    \"phone\": \"9876543210\",\r\n    \"dob\": \"01/01/1970\",\r\n    \"gender\": \"Male\",\r\n    \"roles\": [\"ROLE_MERCHANT\"] \r\n}",
+					"raw": "{\r\n    \"firstName\": \"New\",\r\n    \"lastName\": \"12 SME\",\r\n    \"password\": \"secret\",\r\n    \"email\": \"new12.abn@gmail.com\",\r\n    \"nationality\": \"Indian\",\r\n    \"phone\": \"9876543210\",\r\n    \"dob\": \"01/01/1970\",\r\n    \"gender\": \"Male\",\r\n    \"roles\": [\"ROLE_MERCHANT\"] \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -38,13 +38,43 @@
 			"response": []
 		},
 		{
+			"name": "Signup Lender",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Anant\",\r\n    \"lastName\": \"Patnaik Lender\",\r\n    \"password\": \"secret\",\r\n    \"email\": \"anant.lender@gmail.com\",\r\n    \"nationality\": \"Indian\",\r\n    \"phone\": \"9876543210\",\r\n    \"dob\": \"01/01/1970\",\r\n    \"gender\": \"Male\",\r\n    \"roles\": [\"ROLE_LENDER\"] \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/auth/signup/lender",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"signup",
+						"lender"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Login",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"password\": \"secret\",\r\n    \"email\": \"merchant7@gmail.com\"\r\n}",
+					"raw": "{\r\n    \"password\": \"secret\",\r\n    \"email\": \"anant.lender@gmail.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -149,6 +179,37 @@
 		},
 		{
 			"name": "Get All Categories",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU5OTQwMjUsImV4cCI6MTcyNjAxNDAyNX0.x7XGoS3CBYE4Gx3JPZKcWPQzJDUUKbgJB86NEPmOKCI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/v1/auth/categories/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"categories",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Contract",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -352,7 +413,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudDdAZ21haWwuY29tIiwiaWF0IjoxNzI2MTQ4NjkzLCJleHAiOjE3MjYxNjg2OTN9.WxKSTX167FaXU1Nck8x6KqehAZcrVE7UzFXnzK_ofT0",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYXdhbi5rb3VsQGdtYWlsLmNvbSIsImlhdCI6MTcyNjE2MjI5MSwiZXhwIjoxNzI2MTgyMjkxfQ.X1VcWjmbvEG45rDlkyNRaZTgc5pJsntdxX47lTpJfao",
 							"type": "string"
 						}
 					]
@@ -361,7 +422,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"productName\": \"Mobile\",\r\n    \"quantity\": 200,\r\n    \"merchantId\": 7,\r\n    \"categoryId\": 2,\r\n    \"price\": 30,\r\n    \"currency\": \"EUR\"\r\n\r\n}",
+					"raw": "{\r\n    \"productName\": \"Mobile\",\r\n    \"quantity\": 200,\r\n    \"merchantId\": 4,\r\n    \"categoryId\": 2,\r\n    \"price\": 30,\r\n    \"currency\": \"EUR\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -742,7 +803,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmUxQGdtYWlsLmNvbSIsImlhdCI6MTcyNjEzNjM2NCwiZXhwIjoxNzI2MTU2MzY0fQ.C0_r9IpwpykIDXNPB2GEL35V6UgdtbLdZqt_dkffT9w",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzbWUuYW5hbnRAZ21haWwuY29tIiwiaWF0IjoxNzI2MTY5MTQ1LCJleHAiOjE3MjYxODkxNDV9.RnzeDE0H35-IoK4Y9B9VFjNOnmYfthErnHNWR3d29a4",
 							"type": "string"
 						}
 					]
@@ -751,7 +812,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"merchantId\": 1,\r\n    \"lenderId\": 1,\r\n    \"loanAmountRequested\": 2600,\r\n    \"currency\": \"EUR\"\r\n}",
+					"raw": "{\r\n    \"merchantId\": 5,\r\n    \"lenderId\": 7,\r\n    \"loanAmountRequested\": 2000,\r\n    \"currency\": \"EUR\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1016,7 +1077,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmVAZ21haWwuY29tIiwiaWF0IjoxNzI1OTkyMjk4LCJleHAiOjE3MjYwMTIyOTh9.GnNRbgC87mhU5PwdzG6Ym5RQawk3UiR_HU8IIdAuERk",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmFudC5sZW5kZXJAZ21haWwuY29tIiwiaWF0IjoxNzI2MTc2NjEzLCJleHAiOjE3MjYxOTY2MTN9.McvUrShe0uDrF7ogrdn0DtGBkxvSTJfXoEsACUfSOl4",
 							"type": "string"
 						}
 					]
@@ -1025,7 +1086,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"minLoanAmount\": 1600.0,\n    \"maxLoanAmount\": 2500.0,\n    \"minInterestRate\": 2.0,\n    \"maxInterestRate\": 4.0,\n    \"loanCriteria\": \"should be paid in 9 months\",\n    \"lenderId\":2\n\n}",
+					"raw": "{\n    \"minLoanAmount\": 1600.0,\n    \"maxLoanAmount\": 5000.0,\n    \"minInterestRate\": 2.0,\n    \"maxInterestRate\": 4.0,\n    \"loanCriteria\": \"should be paid in 9 months\",\n    \"lenderId\":9\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
