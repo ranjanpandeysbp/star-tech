@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "00aa228b-309c-4445-a0b4-be4acc76fe4a",
+		"_postman_id": "f66d8bf6-8b89-4181-a5a5-61b73581c86d",
 		"name": "ims-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "21418695"
+		"_exporter_id": "37225932",
+		"_collection_link": "https://grey-space-185523.postman.co/workspace/fa141e32-445a-4d49-b5ea-de1b8ec344d7/collection/37225932-f66d8bf6-8b89-4181-a5a5-61b73581c86d?action=share&source=collection_link&creator=37225932"
 	},
 	"item": [
 		{
@@ -13,7 +14,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"firstName\": \"lender\",\r\n    \"lastName\": \"one\",\r\n    \"password\": \"secret\",\r\n    \"email\": \"lenderone@gmail.com\",\r\n    \"nationality\": \"Indian\",\r\n    \"phone\": \"9876543210\",\r\n    \"dob\": \"01/01/1970\",\r\n    \"gender\": \"Male\",\r\n    \"roles\": [\"ROLE_LENDER\"] \r\n}",
+					"raw": "{\r\n    \"firstName\": \"lender\",\r\n    \"lastName\": \"one\",\r\n    \"password\": \"secret\",\r\n    \"email\": \"lenderone1@gmail.com\",\r\n    \"nationality\": \"Indian\",\r\n    \"phone\": \"9876543210\",\r\n    \"dob\": \"01/01/1970\",\r\n    \"gender\": \"Male\",\r\n    \"roles\": [\"ROLE_LENDER\"] \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -45,7 +46,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"password\": \"secret\",\r\n    \"email\": \"lenderone@gmail.com\"\r\n}",
+					"raw": "{\r\n    \"password\": \"secret\",\r\n    \"email\": \"lenderone1@gmail.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -626,7 +627,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTk1NjksImV4cCI6MTcyNTgxOTc2OX0.LlXwX4o5XUhLf60zx9GDeIz5b3FjvXxbeAEpcNoB_3Y",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmUxQGdtYWlsLmNvbSIsImlhdCI6MTcyNjEzMzEwOSwiZXhwIjoxNzI2MTUzMTA5fQ.aAT7_jb0_di8aTAHLikGNGR7ZN63rtMxubitFmZDQUI",
 							"type": "string"
 						}
 					]
@@ -667,7 +668,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTk1NjksImV4cCI6MTcyNTgxOTc2OX0.LlXwX4o5XUhLf60zx9GDeIz5b3FjvXxbeAEpcNoB_3Y",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmUxQGdtYWlsLmNvbSIsImlhdCI6MTcyNjEzNDAwMywiZXhwIjoxNzI2MTU0MDAzfQ.MOtciUv--O-hArJjajfZsSfAtpJcdFZBFZM_uPBmCNw",
 							"type": "string"
 						}
 					]
@@ -700,7 +701,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTk1NjksImV4cCI6MTcyNTgxOTc2OX0.LlXwX4o5XUhLf60zx9GDeIz5b3FjvXxbeAEpcNoB_3Y",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmUxQGdtYWlsLmNvbSIsImlhdCI6MTcyNjEzMjU0NSwiZXhwIjoxNzI2MTUyNTQ1fQ.4QNrSnZLXRRWURJnAgVXv5ZJRiPtOdcacP-TSkfQa78",
 							"type": "string"
 						}
 					]
@@ -709,7 +710,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 1,\n    \"loanAmountRequested\": 2600.0,\n    \"riskScore\": 8.0\n}",
+					"raw": "{\n    \"id\": 1,\n    \"loanAmountRequested\": 2700.0,\n    \"riskScore\": 8.0\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -717,7 +718,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/loanapplications/update?id=52",
+					"raw": "http://localhost:8080/api/v1/auth/loanapplications/update?id=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -733,7 +734,7 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "52"
+							"value": "1"
 						}
 					]
 				}
@@ -748,12 +749,12 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MTk5MDcsImV4cCI6MTcyNTgyMDEwN30.Lrh8qE5RCEgI8MtZrO4SPuQ_gE1ngBaHIyfkjewrJTY",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmUxQGdtYWlsLmNvbSIsImlhdCI6MTcyNjEzNDM2NCwiZXhwIjoxNzI2MTU0MzY0fQ.5cPaDw_AqtMNHz28phIyma9AIXzk-_lHaxKxppaPje0",
 							"type": "string"
 						}
 					]
 				},
-				"method": "PATCH",
+				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -765,7 +766,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/loanapplications/update-loan-amount?loanAmount=3000&id=52",
+					"raw": "http://localhost:8080/api/v1/auth/loanapplications/update-loan-amount?loanAmount=3300&id=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -781,11 +782,11 @@
 					"query": [
 						{
 							"key": "loanAmount",
-							"value": "3000"
+							"value": "3300"
 						},
 						{
 							"key": "id",
-							"value": "52"
+							"value": "1"
 						}
 					]
 				}
@@ -800,12 +801,12 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtZXJjaGFudG9uZUBnbWFpbC5jb20iLCJpYXQiOjE3MjU4MjA2NDgsImV4cCI6MTcyNTgyMDg0OH0.AMcPu5kSAe0376WubevaGyCdl2TeGPiKLHKh2QRekzs",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW5kZXJvbmUxQGdtYWlsLmNvbSIsImlhdCI6MTcyNjEzNDAwMywiZXhwIjoxNzI2MTU0MDAzfQ.MOtciUv--O-hArJjajfZsSfAtpJcdFZBFZM_uPBmCNw",
 							"type": "string"
 						}
 					]
 				},
-				"method": "PATCH",
+				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -817,7 +818,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/auth/loanapplications/update-loan-status?loanStatus=INITIATED&id=52",
+					"raw": "http://localhost:8080/api/v1/auth/loanapplications/update-loan-status?loanStatus=REJECTED&id=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -833,11 +834,11 @@
 					"query": [
 						{
 							"key": "loanStatus",
-							"value": "INITIATED"
+							"value": "REJECTED"
 						},
 						{
 							"key": "id",
-							"value": "52"
+							"value": "1"
 						}
 					]
 				}
@@ -1367,10 +1368,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/api/v1/noauth/quotes/save",
+					"raw": "http://localhost:8080/api/v1/noauth/quotes/save",
+					"protocol": "http",
 					"host": [
-						"{{host}}"
+						"localhost"
 					],
+					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -1480,8 +1483,7 @@
 						{
 							"key": "endDate",
 							"value": "2024-11-08T10:24:21.73924",
-							"disabled": true,
-					"raw": "{\r\n    \"password\": \"secret\",\r\n    \"email\": \"lenderone@gmail.com\"\r\n}",
+							"disabled": true
 						}
 					]
 				}

@@ -49,13 +49,13 @@ public class LoanApplicationController {
         List<LoanApplicationResponseDTO> loanApplicationResponseDTO = loanApplicationService.search(id);
         return new ResponseEntity<>(loanApplicationResponseDTO, HttpStatus.OK);
     }
-    @PatchMapping("/update-loan-amount")
+    @PutMapping("/update-loan-amount")
     @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
     public ResponseEntity<LoanApplicationResponseDTO> update(@RequestParam Double loanAmount, @RequestParam Long id) {
         LoanApplicationResponseDTO loanApplicationResponseDTO = loanApplicationService.updateLoanAmount(loanAmount,id);
         return new ResponseEntity<>(loanApplicationResponseDTO, HttpStatus.OK);
     }
-    @PatchMapping("/update-loan-status")
+    @PutMapping("/update-loan-status")
     @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
     public ResponseEntity<LoanApplicationResponseDTO> updateLoanStatus(@RequestParam String loanStatus, @RequestParam Long id,@RequestParam String role) {
         LoanApplicationResponseDTO loanApplicationResponseDTO = loanApplicationService.updateLoanStatus(loanStatus,id,role);
