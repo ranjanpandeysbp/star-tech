@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class LoanApplication {
     private UserEntity merchant;
     @OneToOne
     private UserEntity lender;
+    private Long loanOfferId;
     private Double riskScore;
     private Double loanAmountRequested;
     private EStatus eLoanStatusLender;
@@ -30,4 +32,6 @@ public class LoanApplication {
     private LocalDateTime createdDateTime;
     private LocalDateTime updatedDateTime;
     private ECurrency currency;
+    private LocalDate repaymentDate;
+    private Double interestRate;
 }

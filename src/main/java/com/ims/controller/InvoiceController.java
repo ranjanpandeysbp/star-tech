@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -26,6 +27,8 @@ public class InvoiceController {
     @PostMapping("/invoices")
     public ResponseEntity<InvoiceEntity> addInvoice(@RequestBody InvoiceEntity invoice){
         UserEntity user = userRepository.findById(commonUtil.loggedInUser().getId()).get();
+        invoice.setCreatedDateTime(LocalDateTime.now());
+        invoice.setUpdatedDateTime(LocalDateTime.now());
         invoice.setMerchant(user);
         return new ResponseEntity<>(invoiceRepository.save(invoice), HttpStatus.CREATED);
     }

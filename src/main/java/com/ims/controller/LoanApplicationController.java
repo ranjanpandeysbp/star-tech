@@ -3,6 +3,7 @@ package com.ims.controller;
 import com.ims.dto.CategoryDTO;
 import com.ims.dto.LoanApplicationRequestDTO;
 import com.ims.dto.LoanApplicationResponseDTO;
+import com.ims.dto.LoanStatusDTO;
 import com.ims.service.impl.LoanApplicationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -56,9 +57,9 @@ public class LoanApplicationController {
         return new ResponseEntity<>(loanApplicationResponseDTO, HttpStatus.OK);
     }
     @PutMapping("/update-loan-status")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
-    public ResponseEntity<LoanApplicationResponseDTO> updateLoanStatus(@RequestParam String loanStatus, @RequestParam Long id,@RequestParam String role) {
-        LoanApplicationResponseDTO loanApplicationResponseDTO = loanApplicationService.updateLoanStatus(loanStatus,id,role);
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT') or hasRole('LENDER')")
+    public ResponseEntity<LoanApplicationResponseDTO> updateLoanStatus(@RequestBody LoanStatusDTO loanStatusDTO) {
+        LoanApplicationResponseDTO loanApplicationResponseDTO = loanApplicationService.updateLoanStatus(loanStatusDTO);
         return new ResponseEntity<>(loanApplicationResponseDTO, HttpStatus.OK);
     }
 

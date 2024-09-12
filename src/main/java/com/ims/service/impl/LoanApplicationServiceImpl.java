@@ -1,24 +1,41 @@
 package com.ims.service.impl;
 
-import com.ims.dto.CategoryDTO;
-import com.ims.dto.ErrorDTO;
-import com.ims.dto.LoanApplicationRequestDTO;
-import com.ims.dto.LoanApplicationResponseDTO;
+import com.ims.dto.*;
 import com.ims.entity.*;
 import com.ims.exception.BusinessException;
+import com.ims.repository.ContractRepository;
 import com.ims.repository.LoanApplicationRepository;
+import com.ims.repository.LoanOfferRepository;
 import com.ims.repository.UserRepository;
 import com.ims.service.ImsService;
 import com.ims.service.LoanApplicationService;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import lombok.SneakyThrows;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class LoanApplicationServiceImpl implements LoanApplicationService{
@@ -27,6 +44,10 @@ public class LoanApplicationServiceImpl implements LoanApplicationService{
     private LoanApplicationRepository loanApplicationRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private ContractRepository contractRepository;
+    @Autowired
+    private LoanOfferRepository loanOfferRepository;
 
     public String applyLoan(LoanApplicationRequestDTO requestDTO){
 
@@ -120,24 +141,98 @@ public class LoanApplicationServiceImpl implements LoanApplicationService{
         return responseDTO;
     }
 
-    public LoanApplicationResponseDTO updateLoanStatus(String loanStatus, Long id, String role) {
-        LoanApplication pe = loanApplicationRepository.findById(id)
-                .orElseThrow(() -> new BusinessException(List.of(new ErrorDTO("NOT_FOUND", "Cannot find Loan application with Id: "+id))));
+    public LoanApplicationResponseDTO updateLoanStatus(LoanStatusDTO loanStatusDTO) {
+        LoanApplication pe = loanApplicationRepository.findById(loanStatusDTO.getId())
+                .orElseThrow(() -> new BusinessException(List.of(new ErrorDTO("NOT_FOUND", "Cannot find Loan application with Id: "+loanStatusDTO.getId()))));
         pe.setUpdatedDateTime(LocalDateTime.now());
-        pe.setId(id);
-        if(role.equalsIgnoreCase("ROLE_MERCHANT")){
-            pe.setELoanStatusMerchant(EStatus.valueOf(loanStatus));
+        pe.setId(loanStatusDTO.getId());
+        if("ROLE_MERCHANT".equalsIgnoreCase(loanStatusDTO.getRole())){
+            pe.setELoanStatusMerchant(EStatus.valueOf(loanStatusDTO.getLoanStatus()));
         }else{
-            pe.setELoanStatusLender(EStatus.valueOf(loanStatus));
+            LoanOffers loanOffers=loanOfferRepository.findById(loanStatusDTO.getLoanOfferId()).get();
+
+            ContractEntity contractEntity = ContractEntity.builder().approvedLoanAmount(pe.getLoanAmountRequested())
+                    .loanApplication(pe).repaymentCriteria(loanOffers.getLoanCriteria())
+                    .interestRate(loanOffers.getMaxInterestRate())
+                    .build();
+            try{
+                createPdf(contractEntity);
+            }
+            catch(Exception e)
+            {
+
+            }
+            contractRepository.save(contractEntity);
+            pe.setELoanStatusLender(EStatus.valueOf(loanStatusDTO.getLoanStatus()));
         }
         pe = loanApplicationRepository.save(pe);
         LoanApplicationResponseDTO responseDTO = new LoanApplicationResponseDTO();
         BeanUtils.copyProperties(pe, responseDTO);
-        if(role.equalsIgnoreCase("ROLE_MERCHANT")){
-            responseDTO.setELoanStatusMerchant(loanStatus);
+        if("ROLE_MERCHANT".equalsIgnoreCase(loanStatusDTO.getRole())){
+            responseDTO.setELoanStatusMerchant(loanStatusDTO.getLoanStatus());
         }else{
-            responseDTO.setELoanStatusLender(loanStatus);
+            if(loanStatusDTO.getLoanStatus().equalsIgnoreCase("APPROVED"))
+            {
+                responseDTO.setELoanStatusMerchant(loanStatusDTO.getLoanStatus());
+
+            }
+            responseDTO.setELoanStatusLender(loanStatusDTO.getLoanStatus());
         }
         return responseDTO;
     }
+
+    @SneakyThrows
+    private void createPdf(ContractEntity contract)  {
+
+        Document document = new Document();
+        PdfWriter.getInstance(document, new FileOutputStream("contract.pdf"));
+
+        document.open();
+
+        PdfPTable table = new PdfPTable(3);
+        addTableHeader(table);
+        addRows(table, contract);
+        addCustomRows(table);
+
+        document.add(table);
+        try {
+            Path filePath = Path.of("contract.pdf");
+            byte[] fileContent = Files.readAllBytes(filePath);
+            StringBuilder sb = new StringBuilder();
+           for(byte b : fileContent)
+           {
+                sb.append(b);
+           }
+           contract.setDocument(sb.toString());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        document.close();
+    }
+    private void addTableHeader(PdfPTable table) {
+        Stream.of("Loan amount", "Interest rate", "Loan remark")
+                .forEach(columnTitle -> {
+                    PdfPCell header = new PdfPCell();
+                    header.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                    header.setBorderWidth(1);
+                    header.setPhrase(new Phrase(columnTitle));
+                    table.addCell(header);
+                });
+    }
+    private void addRows(PdfPTable table,ContractEntity contractEntity) {
+        table.addCell(contractEntity.getApprovedLoanAmount().toString() );
+        table.addCell(contractEntity.getInterestRate().toString());
+        table.addCell(contractEntity.getRepaymentCriteria());
+    }
+    private void addCustomRows(PdfPTable table)
+            throws URISyntaxException, BadElementException, IOException {
+        Path path = Paths.get(ClassLoader.getSystemResource("contract.jpg").toURI());
+        Image img = Image.getInstance(path.toAbsolutePath().toString());
+        img.scalePercent(10);
+
+        PdfPCell imageCell = new PdfPCell(img);
+        table.addCell(imageCell);
+
+    }
+
 }
