@@ -57,6 +57,7 @@ public class LoanApplicationServiceImpl implements LoanApplicationService{
         Random random = new Random();
         int randomNum = random.nextInt((10 - 1) + 1) + 1;
         loanApplication.setLender(lender);
+        loanApplication.setLoanOfferId(requestDTO.getLoanOfferId());
         loanApplication.setRiskScore(Double.valueOf(randomNum));
         loanApplication.setELoanStatusLender(EStatus.INITIATED);
         loanApplication.setELoanStatusMerchant(EStatus.INITIATED);
@@ -85,6 +86,7 @@ public class LoanApplicationServiceImpl implements LoanApplicationService{
             responseDTO = new LoanApplicationResponseDTO();
             BeanUtils.copyProperties(la, responseDTO);
             responseDTO.setLender(la.getLender());
+            responseDTO.setLoanOfferId(la.getLoanOfferId());
             responseDTO.setMerchant(la.getMerchant());
             responseDTO.setELoanStatusLender(la.getELoanStatusLender().toString());
             responseDTO.setELoanStatusMerchant(la.getELoanStatusMerchant().toString());
@@ -163,7 +165,7 @@ public class LoanApplicationServiceImpl implements LoanApplicationService{
 
             }
             contractRepository.save(contractEntity);
-            pe.setELoanStatusLender(EStatus.valueOf(loanStatusDTO.getLoanStatus()));
+            pe.setELoanStatusLender(EStatus.APPROVED);
         }
         pe = loanApplicationRepository.save(pe);
         LoanApplicationResponseDTO responseDTO = new LoanApplicationResponseDTO();
@@ -210,7 +212,7 @@ public class LoanApplicationServiceImpl implements LoanApplicationService{
         document.close();
     }
     private void addTableHeader(PdfPTable table) {
-        Stream.of("Loan amount", "Interest rate", "Loan remark")
+        Stream.of("Loan amount (EUR)", "Interest rate (%)", "Loan remark")
                 .forEach(columnTitle -> {
                     PdfPCell header = new PdfPCell();
                     header.setBackgroundColor(BaseColor.LIGHT_GRAY);

@@ -19,4 +19,5 @@ public class LoanApplicationRequestDTO {
     private Double loanAmountRequested;
     private List<String> comments;
     private String currency;
+    private Long loanOfferId;
 }

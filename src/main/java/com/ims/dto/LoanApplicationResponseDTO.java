@@ -26,4 +26,5 @@ public class LoanApplicationResponseDTO {
     private Double riskScore;
     private LocalDateTime createdDateTime;
     private LocalDateTime updatedDateTime;
+    private Long loanOfferId;
 }
