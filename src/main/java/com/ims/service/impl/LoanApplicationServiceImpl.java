@@ -19,7 +19,12 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -58,7 +63,22 @@ public class LoanApplicationServiceImpl implements LoanApplicationService{
         int randomNum = random.nextInt((10 - 1) + 1) + 1;
         loanApplication.setLender(lender);
         loanApplication.setLoanOfferId(requestDTO.getLoanOfferId());
-        loanApplication.setRiskScore(Double.valueOf(randomNum));
+        try{
+            String url = "https://mia-poc-python.azurewebsites.net/calculate-risk-score";
+            HttpHeaders header = new HttpHeaders();
+            header.setContentType(MediaType.APPLICATION_JSON);
+            RestTemplate restTemplate = new RestTemplate();
+            String body = "{\"tax\":20,\"inventory\":\"testInventory\",\"transactions\":\"testTransactions\"}";
+            HttpEntity<String> entity = new HttpEntity<String>(body,header);
+            ResponseEntity<RiskScoreResponseDTO> responseEntity = restTemplate.postForEntity(url,entity,RiskScoreResponseDTO.class);
+            loanApplication.setRiskScore(responseEntity.getBody().getRisk_score());
+
+        }
+        catch(Exception e)
+        {
+            loanApplication.setRiskScore(randomNum);
+        }
+
         loanApplication.setELoanStatusLender(EStatus.INITIATED);
         loanApplication.setELoanStatusMerchant(EStatus.INITIATED);
         UserEntity merchant = userRepository.findById(requestDTO.getMerchantId()).get();

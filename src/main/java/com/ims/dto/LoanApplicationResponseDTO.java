@@ -23,7 +23,7 @@ public class LoanApplicationResponseDTO {
     private String currency;
     private String eLoanStatusLender;
     private String eLoanStatusMerchant;
-    private Double riskScore;
+    private int riskScore;
     private LocalDateTime createdDateTime;
     private LocalDateTime updatedDateTime;
     private Long loanOfferId;

@@ -23,7 +23,7 @@ public class LoanApplication {
     @OneToOne
     private UserEntity lender;
     private Long loanOfferId;
-    private Double riskScore;
+    private int riskScore;
     private Double loanAmountRequested;
     private EStatus eLoanStatusLender;
     private EStatus eLoanStatusMerchant;
