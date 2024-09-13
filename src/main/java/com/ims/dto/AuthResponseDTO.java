@@ -20,4 +20,5 @@ public class AuthResponseDTO {
     private String lastName;
     private List<String> roles;
     private QuoteEntity quote;
+    private String kvkNumber;
 }

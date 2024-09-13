@@ -96,6 +96,7 @@ public class AuthController {
         res.setFirstName(userDetails.getFirstName());
         res.setLastName(userDetails.getLastName());
         res.setRoles(roles);
+        res.setKvkNumber(authRequest.getKvkNumber());
         return ResponseEntity.ok(res);
     }
 
@@ -117,6 +118,7 @@ public class AuthController {
         user.setEmail(authRequestDTO.getEmail());
         user.setPassword(hashedPassword);
         user.setRoles(roles);
+        user.setKvkNumber(authRequestDTO.getKvkNumber());
         userRepository.save(user);
         return ResponseEntity.ok("User registered success");
     }
@@ -145,6 +147,7 @@ public class AuthController {
         user.setRoles(roles);
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
+        user.setKvkNumber(authRequestDTO.getKvkNumber());
         user = userRepository.save(user);
         user.setPassword(null);
         return new ResponseEntity(user, HttpStatus.CREATED);
@@ -174,6 +177,7 @@ public class AuthController {
         user.setRoles(roles);
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
+        user.setKvkNumber(authRequestDTO.getKvkNumber());
         user = userRepository.save(user);
         user.setPassword(null);
         return new ResponseEntity<>(user, HttpStatus.CREATED);

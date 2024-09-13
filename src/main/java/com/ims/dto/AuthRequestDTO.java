@@ -25,4 +25,5 @@ public class AuthRequestDTO {
     private LocalDate dob;
     private String gender;
     private String password;
+    private String kvkNumber;
 }
