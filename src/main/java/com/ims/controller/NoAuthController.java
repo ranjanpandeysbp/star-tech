@@ -32,6 +32,11 @@ public class NoAuthController {
     @Autowired
     private ProductServiceImpl productService;
 
+    @GetMapping("/hello")
+    public String sayHello(){
+        return "Hello World";
+    }
+
     @PostMapping("/quotes/save")
     public ResponseEntity<QuoteEntity> saveQuote(@RequestBody QuoteEntity qe){
         Optional<QuoteEntity> existingCustomer = quoteRepository.findByEmail(qe.getEmail());

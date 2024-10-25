@@ -37,10 +37,8 @@ public class CategoryServiceImpl implements ImsService<CategoryDTO, CategoryDTO>
     public CategoryDTO add(CategoryDTO input) {
         CategoryEntity categoryEntity = new CategoryEntity();
         BeanUtils.copyProperties(input, categoryEntity);
-        categoryEntity.setActive(true);
-        UserDetailsImpl userDetails = commonUtil.loggedInUser();
-        UserEntity ue = userRepository.findById(userDetails.getId()).get();
-        categoryEntity.setMerchant(ue);
+        UserEntity ue = userRepository.findById(input.getUserId()).get();
+        categoryEntity.setAdmin(ue);
         categoryEntity = categoryRepository.save(categoryEntity);
         BeanUtils.copyProperties(categoryEntity, input);
         return input;
@@ -52,8 +50,8 @@ public class CategoryServiceImpl implements ImsService<CategoryDTO, CategoryDTO>
                 .orElseThrow(() -> new BusinessException(List.of(new ErrorDTO("NOT_FOUND", "Cannot find Category with Id: "+categoryId))));
         BeanUtils.copyProperties(input, pe);
         pe.setUpdatedAt(LocalDateTime.now());
-        pe.setCategoryId(categoryId);
-        pe.setCategoryName(input.getCategoryName());
+        pe.setId(categoryId);
+        pe.setName(input.getName());
         pe = categoryRepository.save(pe);
         BeanUtils.copyProperties(pe, input);
         return input;
@@ -76,7 +74,7 @@ public class CategoryServiceImpl implements ImsService<CategoryDTO, CategoryDTO>
                 .orElseThrow(() -> new BusinessException(List.of(new ErrorDTO("NOT_FOUND", "Cannot find Category with Id: "+id))));
         CategoryDTO categoryDTO = new CategoryDTO();
         BeanUtils.copyProperties(pe, categoryDTO);
-        categoryDTO.setCategoryId(pe.getCategoryId());
+        categoryDTO.setId(pe.getId());
         return categoryDTO;
     }
 
@@ -90,8 +88,8 @@ public class CategoryServiceImpl implements ImsService<CategoryDTO, CategoryDTO>
         }).collect(Collectors.toList());
     }
 
-   public List<CategoryDTO> getAllById(Long merchantId) {
-        List<CategoryEntity> entityList = categoryRepository.findAllByMerchantId(merchantId);
+   public List<CategoryDTO> getAllById(Long userId) {
+        List<CategoryEntity> entityList = categoryRepository.findAllByAdminId(userId);
         return entityList.stream().map(categoryEntity -> {
             CategoryDTO categoryDTO = new CategoryDTO();
             BeanUtils.copyProperties(categoryEntity, categoryDTO);
@@ -102,8 +100,8 @@ public class CategoryServiceImpl implements ImsService<CategoryDTO, CategoryDTO>
     @Override
     public List<CategoryDTO> search(CategoryDTO input) {
         List<CategoryEntity> categories = null;
-        if(input.getCategoryName() != null){
-            categories = categoryRepository.findAllByCategoryNameContaining(input.getCategoryName());
+        if(input.getName() != null){
+            categories = categoryRepository.findAllByNameContaining(input.getName());
         }else {
             categories = new ArrayList<>();
         }
@@ -112,7 +110,7 @@ public class CategoryServiceImpl implements ImsService<CategoryDTO, CategoryDTO>
         for(CategoryEntity category: categories){
             categoryDTO = new CategoryDTO();
             BeanUtils.copyProperties(category, categoryDTO);;
-            categoryDTO.setCategoryId(category.getCategoryId());
+            categoryDTO.setId(category.getId());
             dtos.add(categoryDTO);
         }
         return dtos;

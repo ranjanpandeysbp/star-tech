@@ -98,7 +98,7 @@ public class ProductServiceImpl implements ImsService<ProductDTO, ProductDTO> {
             CategoryDTO categoryDTO = new CategoryDTO();
             if(productEntity.getCategory() != null) {
                 BeanUtils.copyProperties(productEntity.getCategory(), categoryDTO);
-                productDTO.setCategoryName(productEntity.getCategory().getCategoryName());
+                productDTO.setCategoryName(productEntity.getCategory().getName());
             }
             productDTO.setCategory(categoryDTO);
             productDTO.setProductId(productEntity.getProductId());
@@ -153,7 +153,7 @@ public class ProductServiceImpl implements ImsService<ProductDTO, ProductDTO> {
                 .toList();
         Map<String, CategoryEntity> categoryMap = categories.stream()
                 .map(this::saveCategories)
-                .collect(Collectors.toMap(CategoryEntity::getCategoryName, category -> category));
+                .collect(Collectors.toMap(CategoryEntity::getName, category -> category));
 
         inventoryDetails.getInventoryDetails().stream().skip(1).forEach(row -> {
             String productName = (String) row.get(0);
@@ -170,8 +170,8 @@ public class ProductServiceImpl implements ImsService<ProductDTO, ProductDTO> {
     }
     private CategoryEntity saveCategories(String category){
         CategoryEntity categoryEntity= new CategoryEntity();
-        categoryEntity.setCategoryName(category);
-        categoryEntity.setMerchant(userEntity);
+        categoryEntity.setName(category);
+        categoryEntity.setAdmin(userEntity);
         return categoryRepository.save(categoryEntity);
     }
 

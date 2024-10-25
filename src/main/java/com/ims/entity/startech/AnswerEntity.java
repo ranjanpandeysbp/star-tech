@@ -1,5 +1,6 @@
 package com.ims.entity.startech;
 
+import com.ims.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

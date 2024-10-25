@@ -19,16 +19,12 @@ public class CategoryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long categoryId;
-
-    private String categoryName;
-    private boolean active;
+    private Long id;
+    private String name;
+    
     @ManyToOne
-    private UserEntity merchant;
+    private UserEntity admin;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-
-    @OneToMany(mappedBy = "category")
-    private Set<ProductEntity> products;
 
 }

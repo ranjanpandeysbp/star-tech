@@ -19,7 +19,7 @@ public class CategoryController {
     private CategoryServiceImpl categoryService;
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
+    //@PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
     public ResponseEntity<CategoryDTO> add(@RequestBody CategoryDTO input){
         input = categoryService.add(input);
         return new ResponseEntity<>(input, HttpStatus.CREATED);
@@ -49,10 +49,10 @@ public class CategoryController {
         List<CategoryDTO> CategoryDTOList = categoryService.search(categoryDTO);
         return new ResponseEntity<>(CategoryDTOList, HttpStatus.OK);
     }
-    @GetMapping("/{merchantId}")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
-    public ResponseEntity<List<CategoryDTO>> getAllById(@PathVariable Long merchantId) {
-        List<CategoryDTO> dtoList = categoryService.getAllById(merchantId);
+    @GetMapping("/{userId}")
+    //@PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
+    public ResponseEntity<List<CategoryDTO>> getAllById(@PathVariable Long userId) {
+        List<CategoryDTO> dtoList = categoryService.getAllById(userId);
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
     }
 }

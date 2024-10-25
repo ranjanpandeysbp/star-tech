@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CategoryDTO {
-    private Long categoryId;
-    private String categoryName;
-    private boolean active;
+    private Long id;
+    private String name;
+    private Long userId;
 }
