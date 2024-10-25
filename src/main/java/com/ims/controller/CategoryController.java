@@ -2,6 +2,7 @@ package com.ims.controller;
 
 import com.ims.dto.CategoryDTO;
 import com.ims.dto.ProductDTO;
+import com.ims.entity.CategoryEntity;
 import com.ims.repository.CategoryRepository;
 import com.ims.service.impl.CategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class CategoryController {
 
     @Autowired
     private CategoryServiceImpl categoryService;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @PostMapping
     //@PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
@@ -55,5 +58,12 @@ public class CategoryController {
     public ResponseEntity<List<CategoryDTO>> getAllById(@PathVariable Long userId) {
         List<CategoryDTO> dtoList = categoryService.getAllById(userId);
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
+    }
+
+    @GetMapping("/{categoryId}/detail")
+    //@PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
+    public ResponseEntity<CategoryEntity> getCatDetailById(@PathVariable Long categoryId) {
+        CategoryEntity ce = categoryRepository.findById(categoryId).get();
+        return new ResponseEntity<>(ce, HttpStatus.OK);
     }
 }

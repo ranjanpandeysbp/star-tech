@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface PointRepository extends JpaRepository<PointsAssignedEntity, Long> {
 
-    List<PointsAssignedEntity> findPointByContrubutorId(Long contrubutorId);
+    List<PointsAssignedEntity> findPointByContributorId(Long contributorId);
 
 }

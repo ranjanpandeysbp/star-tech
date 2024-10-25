@@ -28,7 +28,7 @@ public class PointController {
 
     @GetMapping("/{contributorId}")
     public ResponseEntity<List<PointsAssignedEntity>> getAllpointsByContId(@PathVariable Long contributorId) {
-        List<PointsAssignedEntity> points = pointRepository.findPointByContrubutorId(contributorId);
+        List<PointsAssignedEntity> points = pointRepository.findPointByContributorId(contributorId);
         return new ResponseEntity<>(points, HttpStatus.OK);
 
     }

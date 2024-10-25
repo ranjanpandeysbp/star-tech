@@ -43,8 +43,8 @@ public class RequestController {
     }
 
     @GetMapping("/{categoryId}/requests")
-    public ResponseEntity<List<RequestEntity>> getAllRequestsByCatId(@PathVariable Long catId) {
-        List<RequestEntity> datas = requestRepository.findAllByCategoryId(catId);
+    public ResponseEntity<List<RequestEntity>> getAllRequestsByCatId(@PathVariable Long categoryId) {
+        List<RequestEntity> datas = requestRepository.findAllByCategoryId(categoryId);
         return new ResponseEntity<>(datas, HttpStatus.OK);
     }
 }
