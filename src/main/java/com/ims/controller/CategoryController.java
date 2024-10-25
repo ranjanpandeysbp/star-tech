@@ -2,6 +2,7 @@ package com.ims.controller;
 
 import com.ims.dto.CategoryDTO;
 import com.ims.dto.ProductDTO;
+import com.ims.repository.CategoryRepository;
 import com.ims.service.impl.CategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class CategoryController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
+    //@PreAuthorize("hasRole('ADMIN') or hasRole('MERCHANT')")
     public ResponseEntity<List<CategoryDTO>> getAll() {
         List<CategoryDTO> dtoList = categoryService.getAll();
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
