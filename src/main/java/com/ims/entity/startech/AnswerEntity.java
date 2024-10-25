@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -29,8 +30,8 @@ public class AnswerEntity {
     @ManyToOne
     private RequestEntity request;
 
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    private LocalDateTime pointsAssignedAt;
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
+    private LocalDate pointsAssignedAt;
     private Integer points;
 }
