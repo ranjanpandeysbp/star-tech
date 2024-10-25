@@ -32,6 +32,4 @@ public class PointController {
         return new ResponseEntity<>(points, HttpStatus.OK);
 
     }
-
-
 }

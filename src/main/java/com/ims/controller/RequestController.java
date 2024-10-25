@@ -47,4 +47,10 @@ public class RequestController {
         List<RequestEntity> datas = requestRepository.findAllByCategoryId(categoryId);
         return new ResponseEntity<>(datas, HttpStatus.OK);
     }
+
+    @GetMapping("/{requestId}/detail")
+    public ResponseEntity<RequestEntity> getRequestDetail(@PathVariable Long requestId) {
+        RequestEntity re = requestRepository.findById(requestId).get();
+        return new ResponseEntity<>(re, HttpStatus.OK);
+    }
 }
