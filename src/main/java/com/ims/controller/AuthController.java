@@ -107,7 +107,7 @@ public class AuthController {
         }
         String hashedPassword = passwordEncoder.encode(authRequestDTO.getPassword());
         Set<RoleEntity> roles = new HashSet<>();
-        Optional<RoleEntity> userRole = roleRepository.findByName(ERole.ROLE_MERCHANT);
+        Optional<RoleEntity> userRole = roleRepository.findByName(ERole.ROLE_REQUESTER);
         if (userRole.isEmpty()) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("role not found");
         }
@@ -123,14 +123,14 @@ public class AuthController {
         return ResponseEntity.ok("User registered success");
     }
 
-    @PostMapping("/signup/merchant")
-    public ResponseEntity<?> signupMerchant(@RequestBody AuthRequestDTO authRequestDTO) {
+    @PostMapping("/signup/requester")
+    public ResponseEntity<?> signupRequester(@RequestBody AuthRequestDTO authRequestDTO) {
         if (userRepository.existsByEmail(authRequestDTO.getEmail())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("email is already taken");
         }
         String hashedPassword = passwordEncoder.encode(authRequestDTO.getPassword());
         Set<RoleEntity> roles = new HashSet<>();
-        Optional<RoleEntity> userRole = roleRepository.findByName(ERole.ROLE_MERCHANT);
+        Optional<RoleEntity> userRole = roleRepository.findByName(ERole.ROLE_REQUESTER);
         if (userRole.isEmpty()) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("role not found");
         }
@@ -153,14 +153,14 @@ public class AuthController {
         return new ResponseEntity(user, HttpStatus.CREATED);
     }
 
-    @PostMapping("/signup/lender")
-    public ResponseEntity<?> signupLender(@RequestBody AuthRequestDTO authRequestDTO) {
+    @PostMapping("/signup/contributor")
+    public ResponseEntity<?> signupContributor(@RequestBody AuthRequestDTO authRequestDTO) {
         if (userRepository.existsByEmail(authRequestDTO.getEmail())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("email is already taken");
         }
         String hashedPassword = passwordEncoder.encode(authRequestDTO.getPassword());
         Set<RoleEntity> roles = new HashSet<>();
-        Optional<RoleEntity> userRole = roleRepository.findByName(ERole.ROLE_LENDER);
+        Optional<RoleEntity> userRole = roleRepository.findByName(ERole.ROLE_CONTRIBUTOR);
         if (userRole.isEmpty()) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("role not found");
         }
