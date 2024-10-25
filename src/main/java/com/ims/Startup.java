@@ -25,33 +25,18 @@ public class Startup implements CommandLineRunner {
            roleRepository.save(role);
        }
 
-        Optional<RoleEntity> optRoleOwn = roleRepository.findByName(ERole.ROLE_MANAGER);
-        if(optRoleOwn.isEmpty()){
-            RoleEntity role = new RoleEntity();
-            role.setName(ERole.ROLE_MANAGER);
-            roleRepository.save(role);
-        }
-
-        Optional<RoleEntity> optRoleMe = roleRepository.findByName(ERole.ROLE_MERCHANT);
+        Optional<RoleEntity> optRoleMe = roleRepository.findByName(ERole.ROLE_REQUESTER);
         if(optRoleMe.isEmpty()){
             RoleEntity role = new RoleEntity();
-            role.setName(ERole.ROLE_MERCHANT);
+            role.setName(ERole.ROLE_REQUESTER);
             roleRepository.save(role);
         }
 
-        Optional<RoleEntity> optRoleVe = roleRepository.findByName(ERole.ROLE_VENDOR);
+        Optional<RoleEntity> optRoleVe = roleRepository.findByName(ERole.ROLE_CONTRIBUTOR);
         if(optRoleVe.isEmpty()){
             RoleEntity role = new RoleEntity();
-            role.setName(ERole.ROLE_VENDOR);
+            role.setName(ERole.ROLE_CONTRIBUTOR);
             roleRepository.save(role);
         }
-
-        Optional<RoleEntity> optRoleLe = roleRepository.findByName(ERole.ROLE_LENDER);
-        if(optRoleLe.isEmpty()){
-            RoleEntity role = new RoleEntity();
-            role.setName(ERole.ROLE_LENDER);
-            roleRepository.save(role);
-        }
-
     }
 }
