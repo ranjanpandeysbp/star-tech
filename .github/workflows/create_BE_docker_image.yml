@@ -1,4 +1,5 @@
 name: Build and Deploy Docker-App
+
 on:
   push:
     branches: [ "master" ]
@@ -11,7 +12,7 @@ on:
         default: DEV
         required: true        
 
-jobs:
+  jobs:
     build-deploy:
       name: build and deploy docker-app
       runs-on: ubuntu-20.04
@@ -36,7 +37,7 @@ jobs:
             context: .
             dockerfile: Dockerfile
             push: false
-            tags: ${{ secrets.OCKER_REPO }}/capathon2024:v1.0.0
+            tags: ${{ secrets.DOCKER_REPO }}/capathon:v1
 
         - name: login to docker hub
           uses: docker/login-action@v1
@@ -50,4 +51,4 @@ jobs:
             context: .
             dockerfile: Dockerfile
             push: true
-            tags: ${{ secrets.DOCKER_REPO }}/capathon2024:v1.0.0
+            tags: ${{ secrets.DOCKER_REPO }}/capathon:v1
