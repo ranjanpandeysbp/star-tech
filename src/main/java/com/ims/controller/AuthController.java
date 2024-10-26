@@ -50,6 +50,7 @@ public class AuthController {
         this.commonUtil = commonUtil;
         this.quoteRepository = quoteRepository;
     }
+
     @GetMapping("/update-role/{userId}/{role}")
     public ResponseEntity<?> updateRole(@PathVariable Long userId, @PathVariable String role){
         Optional<UserEntity> optUser = userRepository.findById(userId);

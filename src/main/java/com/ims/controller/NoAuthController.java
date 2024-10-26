@@ -5,8 +5,10 @@ import com.ims.dto.InventoryDetailRequest;
 import com.ims.dto.InventoryDetailsResponse;
 import com.ims.dto.LoanOfferDTO;
 import com.ims.entity.QuoteEntity;
+import com.ims.entity.UserEntity;
 import com.ims.repository.ProductRepository;
 import com.ims.repository.QuoteRepository;
+import com.ims.repository.UserRepository;
 import com.ims.service.impl.LoanOfferServiceImpl;
 import com.ims.service.impl.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +33,18 @@ public class NoAuthController {
     private LoanOfferServiceImpl loanOfferServiceImpl;
     @Autowired
     private ProductServiceImpl productService;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/hello")
     public String sayHello(){
         return "Hello World";
     }
-
+    @GetMapping("/allusers")
+    public ResponseEntity<List<UserEntity>> getAllUsers(){
+        List<UserEntity> users = userRepository.findAll();
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
     @PostMapping("/quotes/save")
     public ResponseEntity<QuoteEntity> saveQuote(@RequestBody QuoteEntity qe){
         Optional<QuoteEntity> existingCustomer = quoteRepository.findByEmail(qe.getEmail());
