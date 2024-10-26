@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -30,6 +31,6 @@ public class PointsAssignedEntity {
     @ManyToOne
     private CategoryEntity category;
 
-    private LocalDateTime createdAt;
+    private LocalDate createdAt;
 
 }

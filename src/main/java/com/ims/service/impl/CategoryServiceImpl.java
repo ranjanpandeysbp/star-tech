@@ -17,6 +17,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class CategoryServiceImpl implements ImsService<CategoryDTO, CategoryDTO>
         CategoryEntity pe = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new BusinessException(List.of(new ErrorDTO("NOT_FOUND", "Cannot find Category with Id: "+categoryId))));
         BeanUtils.copyProperties(input, pe);
-        pe.setUpdatedAt(LocalDateTime.now());
+        pe.setUpdatedAt(LocalDate.now());
         pe.setId(categoryId);
         pe.setName(input.getName());
         pe = categoryRepository.save(pe);
